@@ -30,7 +30,7 @@ class PerfilDiariaDAO {
 
         $perfil_diaria = array();
 
-        while($per] = mysqli_fetch_assoc($resultado))
+        while($per = mysqli_fetch_assoc($resultado))
         {
             array_push($perfil_diaria,$perfil_diaria);
         }
@@ -67,4 +67,5 @@ class PerfilDiariaDAO {
 
         return $perfil_diaria;
     }
+}
 ?>
