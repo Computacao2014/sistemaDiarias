@@ -1,15 +1,15 @@
 <?php
 
-require_once '../classes/Servidor.php';
+//require_once '../classes/Servidor.php';
 require_once 'DAO.php';
 
-$nome = $_POST['nome'];
-$matricula = $_POST['matricula'];
-$cpf = $_POST['cpf'];
-$senha = $_POST['senha'];
 
-$sql = "INSERT INTO servidor(matricula, cpf, nome, senha) VALUES ('{$matricula}','{$cpf}','{$nome}','{$senha}')";
+class ServidorDAO{
+    public static function inserir_servidor($servidor){
+        $sql = "INSERT INTO servidor(matricula, cpf, nome, senha) VALUES ('{$servidor->getMatricula()}','{$servidor->getCpf()}','{$servidor->getNome()}','{$servidor->getSenha()}')";
 
-$dao = new DAO();
-$con = $dao->getConexao();
-mysqli_query($con, $sql);
+        $dao = new DAO();
+        $con = $dao->getConexao();
+        mysqli_query($con, $sql);
+    }
+}

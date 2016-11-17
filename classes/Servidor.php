@@ -12,7 +12,17 @@ class Servidor
     private $cpf;
     private $nome;
     private $cargo;
+    private $senha;
     private $diariasSolicitadas = array();
+
+    public function getSenha()
+    {
+        return $this->senha;
+    }
+    public function setSenha($senha)
+    {
+        $this->senha = $senha;
+    }
 
     public function getMatricula()
     {

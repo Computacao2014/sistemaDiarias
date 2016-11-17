@@ -1,5 +1,8 @@
 <?php
     require_once 'classes/pagina.php';
+    require_once 'DAO/DAO.php';
+    require_once 'classes/Servidor.php';
+    require_once 'DAO/ServidorDAO.php';
     
     
     class Pagina_Cadastro_Servidores extends Pagina{
@@ -19,7 +22,7 @@
             <div class="container formulario">
                 
                 <h2>Cadastro de servidores</h2>
-                <form class="form-horizontal" action="DAO/ServidorDAO.php" method="post">
+                <form class="form-horizontal" action="cadastro_servidores.php" method="post">
                   
                 
                 <div class="form-group">
@@ -75,4 +78,30 @@
     
     $t->display();
     
+    if($_POST){
+        $nome = $_POST['nome'];
+        $matricula = $_POST['matricula'];
+        $cpf = $_POST['cpf'];
+        $senha = $_POST['senha'];
+        
+        $servidor = new Servidor();
+        $servidor->setNome($nome);
+        $servidor->setMatricula($matricula);
+        $servidor->setCpf($cpf);
+        $servidor->setSenha($senha);
+
+        ServidorDAO::inserir_servidor($servidor);
+        exibir_sucesso();
+        
+    }
+    
+    
+    function exibir_sucesso(){
+        
+        ?>
+        <div class="alert alert-success">
+          <strong>O Servidor foi cadastrado com sucesso!</strong> 
+        </div>
+        <?php
+    }
 ?>
