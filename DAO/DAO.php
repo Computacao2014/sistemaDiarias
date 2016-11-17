@@ -9,7 +9,6 @@
  class DAO
  {
      
-
      function getConexao()
      {
          $con = mysqli_connect('localhost', 'root', '', 'sistemadiarias');
