@@ -6,7 +6,7 @@
  * @author kenad
  */
 require_once('DAO/DAO.php');
-require_once('class/Cargo.php');
+require_once('classes/Cargo.php');
 
 class CargoDAO
 {

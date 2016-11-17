@@ -6,7 +6,7 @@
  * @author kenad
  */
 require_once('DAO/DAO.php');
-require_once('class/Endereco.php');
+require_once('classes/Endereco.php');
 
 class EnderecoDAO
 {
