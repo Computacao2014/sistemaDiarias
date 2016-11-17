@@ -35,7 +35,7 @@ CREATE TABLE `perfil_diaria`
   `id` bigint(20) NOT NULL,
   `valor_no_estado` double NOT NULL,
   `valor_fora_estado` double NOT NULL,
-  `nome` varchar(255) NOT NULL
+  `classe` varchar(255) NOT NULL
 ) 
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
