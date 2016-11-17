@@ -34,7 +34,7 @@ class EnderecoDAO
 
         while($endereco = mysqli_fetch_assoc($resultado))
         {
-            array_push($enderecos,$endereco)
+            array_push($enderecos,$endereco);
         }
 
         return $enderecos;
@@ -49,7 +49,7 @@ class EnderecoDAO
 
         while($endereco = mysqli_fetch_assoc($resultado))
         {
-            array_push($enderecos,$endereco)
+            array_push($enderecos,$endereco);
         }
 
         return $enderecos;
@@ -64,7 +64,7 @@ class EnderecoDAO
 
         while($endereco = mysqli_fetch_assoc($resultado))
         {
-            array_push($enderecos,$endereco)
+            array_push($enderecos,$endereco);
         }
 
         return $enderecos;

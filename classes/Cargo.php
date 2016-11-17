@@ -56,6 +56,6 @@ class Cargo {
     }
     public function setPerfilDiaria($perfil)
     {
-        $this->perfilDiaria = $perfil;s
+        $this->perfilDiaria = $perfil;
     }
 }

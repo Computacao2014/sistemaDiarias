@@ -34,7 +34,7 @@ class CargoDAO
 
         while($cargo = mysqli_fetch_assoc($resultado))
         {
-            array_push($cargos,$cargo)
+            array_push($cargos,$cargo);
         }
 
         return $cargo;
@@ -49,7 +49,7 @@ class CargoDAO
 
         while($cargo = mysqli_fetch_assoc($resultado))
         {
-            array_push($cargos,$cargo)
+            array_push($cargos,$cargo);
         }
 
         return $cargo;
@@ -64,7 +64,7 @@ class CargoDAO
 
         while($cargo = mysqli_fetch_assoc($resultado))
         {
-            array_push($cargos,$cargo)
+            array_push($cargos,$cargo);
         }
 
         return $cargo;
