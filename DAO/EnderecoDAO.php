@@ -54,6 +54,10 @@ class EnderecoDAO
 
         return $enderecos;
     }
+    function buscarEndereco()
+    {
+        
+    }
     function listarTodos()
     {
         $query = "select * from endereco";

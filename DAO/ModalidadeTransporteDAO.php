@@ -71,7 +71,7 @@ class ModalidadeTransporteDAO
 
         $modalidades = array();
 
-        while($modalidade = mysqli_fetch_assoc($modalidade))
+        while($modalidade = mysqli_fetch_assoc($resultado))
         {
             array_push($modalidades,$modalidade);
         }
