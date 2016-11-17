@@ -1,78 +1,58 @@
 <?php
-
-require_once 'Cpf.php';
-
-class Servidor {
-    private $nome;
-    private $cpf;
-    private $rg;
-    private $data_nascimento;
-    private $cargo;
+    require_once("Cargo.php");
+    require_once("Diaria.php");
+/**
+ * Description of Servidor
+ *
+ * @author kenad
+ */
+class Servidor
+{
     private $matricula;
-    private $chefe;
-    private $email;
-    private $senha;
-    
-    
-    
-    
-    
-    public function setCargo($cargo){
-        $this->cargo = $cargo;
-        return TRUE;
-    }
-    
-    public function setChefe($chefe){
-        $this->chefe = $chefe;
-        return TRUE;
-    }
-    
-    public function setCpf($cpf){
-        if(Cpf::cpfValido($cpf)){
-            $this->cpf = $cpf;
-            return TRUE;
-        }
-        else{
-            return FALSE;
-        }
-        
-    }
-    
-    public function setDataNascimento($data){
-        $this->data_nascimento = $data;
-        return TRUE;
-    }
+    private $cpf;
+    private $nome;
+    private $cargo;
+    private $diariasSolicitadas = array();
 
-        public function setEmail($email){
-        $this->email = $email;
-        return true;
+    public function getMatricula()
+    {
+        return $this->matricula;
     }
-
-    public function setMatricula($matricula){
+    public function setMatricula($matricula)
+    {
         $this->matricula = $matricula;
-        return TRUE;
+    }
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+    }
+    public function getNome()
+    {
+        return $this->nome;
+    }
+    public function setNome($nome)
+    {
+        $this->nome=$nome;
+    }
+    public function getCargo()
+    {
+        return $this->cargo;
+    }
+    public function setCargo($cargo)
+    {
+        return $this->cargo = $cargo;
+    }
+    public function getDiarias()
+    {
+        return $this->diariasSolicitadas;
+    }
+    public function setDiarias($diarias)
+    {
+        return $this->diariasSolicitadas = $diarias;
     }
 
-    public function setNome($nome){
-        $this->nome = $nome;
-        return true;
-    }
-    
-    public function setRg($rg){
-        if(is_numeric($rg)){
-            $this->rg = $rg;
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    
-    public function setSenha($senha){
-        $this->senha = $senha;
-        return true;
-    }
-    
-    
-    
 }
