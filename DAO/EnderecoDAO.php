@@ -54,9 +54,19 @@ class EnderecoDAO
 
         return $enderecos;
     }
-    function buscarEndereco()
+    function buscarEndereco($rua,$cep,$estado)
     {
-        
+        $query = "select * from endereco where rua = '{$rua}' and cep = '{$cep}' and estado ='{$estado}'";
+
+        $resultado = mysqli_query($conexao, $query);
+
+        $enderecos = array();
+
+        while($endereco = mysqli_fetch_assoc($resultado))
+        {
+            array_push($enderecos,$endereco);
+        }
+        return $enderecos;
     }
     function listarTodos()
     {

@@ -13,6 +13,9 @@ class Diaria
     private $objetivo;
     private $servidor;
     private $relatorio;
+    private $trajeto;
+    private $projeto;
+    private $modalidade;
 
     public function getId()
     {
@@ -49,5 +52,29 @@ class Diaria
     public function setRelatorio($relatorio)
     {
         $this->relatorio = $relatorio;
+    }
+    public function getProjeto()
+    {
+        return $this->$projeto;
+    }
+    public function setProjeto($projeto)
+    {
+        $this->projeto = $projeto;
+    }
+     public function getTrajeto()
+    {
+        return $this->$trajeto;
+    }
+    public function setTrajeto($trajeto)
+    {
+        $this->trajeto = $trajeto;
+    }
+     public function getModalidade()
+    {
+        return $this->$modalidade;
+    }
+    public function setModalidade($modalidade)
+    {
+        $this->modalidade = $modalidade;
     }
 }
