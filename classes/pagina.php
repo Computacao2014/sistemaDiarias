@@ -8,9 +8,6 @@ class Pagina {
     function Pagina(){
         $this->titulo = "Titulo da pagina";
     }
-    function __construct($servidor) {
-        $this->servidorLogado = $servidor;
-    }
     function getServidorLogado()
     {
         return $this->servidorLogado;
@@ -74,15 +71,14 @@ class Pagina {
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="cadastro_servidores.php"></a>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Servidores
-                            <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="cadastro_servidores.php">Cadastrar Servidor</a></li>
-                            </ul>
-                          </li>
-                    </li>
+                    <li><a href="#">Solicitar</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil Diaria
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="cadastro_perfil_de_diaria.php">Cadastrar</a></li>
                   </ul>
                 </li>
               </ul>

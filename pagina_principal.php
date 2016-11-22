@@ -8,9 +8,7 @@
 require_once 'classes/pagina.php';
 class PaginaPrincipal extends Pagina
 {
-    function __construct($usuario) {
-        parent::__construct($usuario);
-    }
+    
 }
 $pag = new PaginaPrincipal(NULL);
 $pag->display();
