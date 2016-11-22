@@ -1,6 +1,7 @@
 <?php
-require_once '..classes/Servidor.php';
-require_once '..DAO/ServidorDAO.php';
+require_once '../classes/Servidor.php';
+require_once '../DAO/ServidorDAO.php';
+
 if($_POST){
         $nome = $_POST['nome'];
         $matricula = $_POST['matricula'];
@@ -14,9 +15,9 @@ if($_POST){
         $servidor->setSenha($senha);
         
         if(ServidorDAO::inserir_servidor($servidor)){
-            header("Location: cadastro_servidores.php?resultado=sucesso");
+            header("Location: ../cadastro_servidores.php?resultado=sucesso");
         }else{
-            header("Location: cadastro_servidores.php?resultado=erro");
+            header("Location: ../cadastro_servidores.php?resultado=erro");
         }
         
         
