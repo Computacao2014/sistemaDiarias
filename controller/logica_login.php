@@ -1,16 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of logica_login
- *
- * @author root
- */
-class logica_login {
-    //put your code here
+if($_POST){
+    $matricula = $_POST['matricula'];
+    $senha = $_POST['senha'];
+    
+    
 }
