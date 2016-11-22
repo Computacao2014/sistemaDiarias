@@ -69,7 +69,7 @@ class Pagina {
                 <li><a href="cadastro_servidores.php"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
                 <li>
                     <a class="btn btn-link btn-lg" data-toggle="modal" data-target="#myModal">
-                        <span class="glyphicon glyphicon-log-in"></span> Login
+                        <span class="glyphicon glyphicon-log-in"></span> Sair
                     </a>
                 </li>
               </ul>

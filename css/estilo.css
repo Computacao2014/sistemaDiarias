@@ -1,11 +1,11 @@
 body{
-    background: rgba(20,90,80,0.3);
+    background: rgba(240,240,240,1);
 }
 
 .formulario{
     border: solid blue 0px;    
     border-radius: 10px;
-    background: rgba(20,90,80,0.4);
+    background: rgba(20,90,80,0.2);
     padding: 5px;
 }
 
