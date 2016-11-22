@@ -18,7 +18,7 @@ class PerfilDiariaDAO {
     function inserir($perfil_diaria)
     {
 
-        $query = "insert into perfil_diaria(id,valor_no_estado,valor_fora_estado,classe) values('{$perfil_diaria->getId()}','{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()->getClasse()}')";
+        $query = "insert into perfil_diaria(valor_no_estado,valor_fora_estado,classe) values('{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()->getClasse()}')";
 
         mysqli_query($conexao, $query);
     }
