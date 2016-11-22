@@ -1,8 +1,3 @@
 <?php
 
-if($_POST){
-    $matricula = $_POST['matricula'];
-    $senha = $_POST['senha'];
-    
-    
-}
+header("Location: ../pagina_principal.php");
