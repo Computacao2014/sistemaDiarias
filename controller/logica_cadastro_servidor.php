@@ -1,6 +1,6 @@
 <?php
-require_once 'classes/Servidor.php';
-require_once 'DAO/ServidorDAO.php';
+require_once '..classes/Servidor.php';
+require_once '..DAO/ServidorDAO.php';
 if($_POST){
         $nome = $_POST['nome'];
         $matricula = $_POST['matricula'];
