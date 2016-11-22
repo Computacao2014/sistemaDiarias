@@ -56,34 +56,38 @@ class Pagina {
             
     function exibir_navbar(){
         ?>
-        <nav class="navbar navbar-inverse">
-          <div class="container-fluid">
-
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="index.php">SistemaDiaria</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="myNavbar">
+          <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Sistemas Diarias</a>
+              </div>
               <ul class="nav navbar-nav">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="#">Solicitar diárias</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="cadastro_servidores.php"><span class="glyphicon glyphicon-user"></span> Cadastrar</a></li>
-                <li>
-                    <a class="btn btn-link btn-lg" data-toggle="modal" data-target="#myModal">
-                        <span class="glyphicon glyphicon-log-in"></span> Sair
-                    </a>
+                  <li class="active"><a href="pagina_principal.php">Home</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Servidores
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="cadastro_servidores.php">Cadastrar Servidor</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="cadastro_servidores.php"></a>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Servidores
+                            <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                              <li><a href="cadastro_servidores.php">Cadastrar Servidor</a></li>
+                            </ul>
+                          </li>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>
-          </div>
-        </nav>
+          </nav>
           
           <!--Login Modal -->
           <div class="modal fade" id="myModal" role="dialog">
