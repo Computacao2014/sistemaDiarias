@@ -34,7 +34,7 @@
                 
                 <div class="col-sm-10 formulario">
                     <h2>Cadastro de servidores</h2>
-                    <form class="form-horizontal" action="userauthentication.php" method="post">
+                    <form class="form-horizontal" action="controller/logica_cadastro_servidor.php" method="post">
 
 
                     <div class="form-group">
