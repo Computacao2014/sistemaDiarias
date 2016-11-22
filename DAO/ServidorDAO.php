@@ -5,11 +5,23 @@ require_once 'DAO.php';
 
 
 class ServidorDAO{
-    public static function inserir_servidor($servidor){
-        $sql = "INSERT INTO servidor(matricula, cpf, nome, senha) VALUES ('{$servidor->getMatricula()}','{$servidor->getCpf()}','{$servidor->getNome()}','{$servidor->getSenha()}')";
-
+    public static function inserir_servidor($servidor){        
         $dao = new DAO();
         $con = $dao->getConexao();
-        mysqli_query($con, $sql);
+        $query = "INSERT INTO servidor (cpf, nome, senha, matricula) VALUES (?,?,?,?)";
+        $stmt = $con->prepare($query);
+        
+        $nome = $servidor->getNome();
+        $cpf = $servidor->getCpf();
+        $senha = $servidor->getSenha();
+        $matricula = $servidor->getMatricula();
+        
+        $stmt->bind_param("sssi", $cpf, $nome, $senha, $matricula);
+        if(!$stmt->execute()){
+            return false;            
+        }
+        $stmt->close();
+        $dao->fecharConexao();
+        return true;
     }
 }
