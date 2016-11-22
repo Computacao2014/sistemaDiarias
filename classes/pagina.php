@@ -3,11 +3,19 @@
 class Pagina {
     
     private $titulo;
+    private $servidorLogado;
     
     function Pagina(){
         $this->titulo = "Titulo da pagina";
     }
-            
+    function __construct($servidor) {
+        $this->servidorLogado = $servidor;
+    }
+    function getServidorLogado()
+    {
+        return $this->servidorLogado;
+    }
+
     final function display(){
         echo "<!DOCTYPE html>\n";
         echo "<html lang='pt-br'>\n";
