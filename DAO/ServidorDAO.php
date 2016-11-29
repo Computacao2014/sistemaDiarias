@@ -5,23 +5,64 @@ require_once 'DAO.php';
 
 
 class ServidorDAO{
-    public static function inserir_servidor($servidor){        
-        $dao = new DAO();
-        $con = $dao->getConexao();
-        $query = "INSERT INTO servidor (cpf, nome, senha, matricula) VALUES (?,?,?,?)";
-        $stmt = $con->prepare($query);
-        
-        $nome = $servidor->getNome();
-        $cpf = $servidor->getCpf();
-        $senha = $servidor->getSenha();
-        $matricula = $servidor->getMatricula();
-        
-        $stmt->bind_param("sssi", $cpf, $nome, $senha, $matricula);
-        if(!$stmt->execute()){
-            return false;            
+    
+    private $conexao;
+    
+    public function __construct($conexao)
+    {
+        $this->conexao = $conexao;
+    }
+    
+    public function inserir_servidor(Servidor $servidor){        
+        try{
+            $con = $this->conexao;
+            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES (?,?,?,?,?,?)";
+            $stmt = $con->prepare($query);
+            
+            
+            $nome = mysqli_real_escape_string($con,$servidor->getNome());
+            $cpf = mysqli_real_escape_string($con,$servidor->getCpf());
+            $senha = mysqli_real_escape_string($con,$servidor->getSenha());
+            $matricula = mysqli_real_escape_string($con,$servidor->getMatricula());
+            $email = mysqli_real_escape_string($con,$servidor->getEmail());
+            $cargo = mysqli_real_escape_string($con,intval($servidor->getCargo()));
+            
+            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES ('{$matricula}','{$cpf}','{$email}','{$nome}','{$senha}','{$cargo}')";
+            
+            /*if ($con->query($query) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $con->error;
+            }*/
+                        
+            $stmt->bind_param("sssssi",$matricula,$cpf,$email,$nome,$senha,$cargo);
+            if(!$stmt->execute()){
+                
+                return false;            
+            }
+            $stmt->close();
+            return true;
+        } catch (Exception $e)
+        {
+            echo $e->getMessage();
+            return false;
         }
-        $stmt->close();
-        $dao->fecharConexao();
-        return true;
+            
+            
+    }
+    public function buscarPorMatricula($matricula)
+    {
+        $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}'";
+
+        $resultado = mysqli_query($this->conexao, $query);
+
+        $servidores = array();
+
+        while($servidor = mysqli_fetch_assoc($resultado))
+        {
+            array_push($servidores,$servidor);
+        }
+
+        return $servidores;
     }
 }

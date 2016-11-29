@@ -22,12 +22,18 @@ class ModalidadeTransporteDAO
         $this->conexao = $conexao;
     }
     
-    function inserir($modalidade)
+    function inserir(ModalidadeTransporte $modalidade)
     {
+        try {
+            $query = "insert into modalidade_transporte(nome) values('{$modalidade->getNome()}')";
 
-        $query = "insert into modalidade_transporte(nome) values('{$modalidade->getNome()}')";
-
-        mysqli_query($conexao, $query);
+            mysqli_query($conexao, $query);
+            
+            return true;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
     }
     function buscarPorId($id)
     {

@@ -1,4 +1,3 @@
-
 CREATE TABLE `cargo` 
 (
   `id` bigint(20) NOT NULL,
@@ -66,16 +65,16 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `diaria_viagem`
 (
-	`id` bigint(20) NOT NULL,
-	`quant_dias` int(11) DEFAULT NULL,
-	`objeto_viagem` VARCHAR(500) NOT NULL,
-	`data_inicial` VARCHAR(10) NOT NULL,
-	`data_final` VARCHAR(10) NOT NULL,
-	`relato` VARCHAR(2000) NOT NULL,
-	`id_projeto` bigint(20) NOT NULL,
-	`id_trajeto` bigint(20) NOT NULL,
-	`id_modalidade` bigint(20) NOT NULL,
-	`id_servidor` varchar(15) NOT NULL
+    `id` bigint(20) NOT NULL,
+    `quant_dias` int(11) DEFAULT NULL,
+    `objeto_viagem` VARCHAR(500) NOT NULL,
+    `data_inicial` VARCHAR(10) NOT NULL,
+    `data_final` VARCHAR(10) NOT NULL,
+    `relato` VARCHAR(2000) NOT NULL,
+    `id_projeto` bigint(20) NOT NULL,
+    `id_trajeto` bigint(20) NOT NULL,
+    `id_modalidade` bigint(20) NOT NULL,
+    `id_servidor` varchar(15) NOT NULL
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -147,3 +146,38 @@ ALTER TABLE `diaria_viagem`
   ADD CONSTRAINT `viagem_ibfk_2` FOREIGN KEY (`id_trajeto`) REFERENCES `trajeto` (`id`),
   ADD CONSTRAINT `viagem_ibfk_3` FOREIGN KEY (`id_modalidade`) REFERENCES `modalidade_transporte` (`id`),
   ADD CONSTRAINT `viagem_ibfk_4` FOREIGN KEY (`id_servidor`) REFERENCES `servidor`(`matricula`);
+
+ALTER TABLE `servidor`
+  ADD `email` VARCHAR(255) NOT NULL 
+  AFTER `cpf`;
+
+INSERT INTO `perfil_diaria` (`id`, `valor_no_estado`, `valor_fora_estado`, `classe`) 
+  VALUES (NULL, '172.50', '345.00', 'I'), 
+        (NULL, '120.00', '240.00', 'II'),
+        (NULL, '75', '150', 'III');
+
+INSERT INTO `cargo` (`id`, `nome`, `classe`, `id_perfil_diaria`) 
+  VALUES (NULL, 'SECRETÁRIOS', '1', '1'), 
+         (NULL, 'PROCURADOR GERAL', '1', '1'),
+         (NULL, 'DEFENSOR GERAL', '1', '1'), 
+         (NULL, 'CONTROLADOR GERAL', '1', '1'),
+         (NULL, 'DIRETOR GERAL', '1', '1'), 
+         (NULL, 'CONTROLADOR GERAL', '1', '1'),
+         (NULL, 'DIRETOR GERAL', '1', '1'), 
+         (NULL, 'PRESIDENTE', '1', '1'),
+         (NULL, 'SUPERINTENDENTES', '1', '1'), 
+         (NULL, 'COORDENADORES GERAIS', '1', '1'),
+         (NULL, 'DIREÇÃO E ASSESSORAMENTO SUPERIOR - DAS', '2', '2'),
+         (NULL, 'PILOTOS', '2', '2'), 
+         (NULL, 'VICE-PRESIDENTE', '2', '2'),
+         (NULL, 'SECRETÁRIO GERAL', '2', '2'),
+         (NULL, 'DELEGADO GERAL', '2', '2'),
+         (NULL, 'DIRETOR DE GESTÃO INTERNA', '2', '2'),
+         (NULL, 'TÉCNICOS DE NIVEL SUPERIOR', '2', '2'),
+         (NULL, 'DEMAIS DIRENTES', '2', '2'),
+         (NULL, 'OUTRAS FUNÇÕES', '3', '3'),
+         (NULL, 'MILITAR - COMANDANTE E SUBCOMANDANTE', '1', '1'),
+         (NULL, 'MILITAR - OFICIAIS', '2', '2'),
+         (NULL, 'MILITAR - PRAÇAS', '3', '3');
+
+ALTER TABLE cargo DROP COLUMN classe;

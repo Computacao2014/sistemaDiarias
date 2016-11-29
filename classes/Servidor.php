@@ -11,6 +11,7 @@ class Servidor
     private $matricula;
     private $cpf;
     private $nome;
+    private $email;
     private $cargo;
     private $senha;
     private $diariasSolicitadas = array();
@@ -22,6 +23,14 @@ class Servidor
     public function setSenha($senha)
     {
         $this->senha = $senha;
+    }
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+    public function getEmail()
+    {
+        return $this->email;
     }
 
     public function getMatricula()

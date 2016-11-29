@@ -12,6 +12,7 @@
      
      function getConexao(){
          $this->con = new mysqli('localhost', 'root', '', 'sistemadiarias');
+         $this->con->set_charset("utf8");
          if(mysqli_connect_errno()){
              echo 'Codigo do erro '. mysqli_connect_errno();
              exit();

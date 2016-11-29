@@ -15,12 +15,18 @@ class PerfilDiariaDAO {
     {
         $this->conexao = $conexao;
     }
-    function inserir($perfil_diaria)
+    function inserir(PerfilDiaria $perfil_diaria)
     {
+        try {
+            $query = "insert into perfil_diaria(valor_no_estado,valor_fora_estado,classe) values('{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()->getClasse()}')";
 
-        $query = "insert into perfil_diaria(valor_no_estado,valor_fora_estado,classe) values('{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()->getClasse()}')";
-
-        mysqli_query($conexao, $query);
+            mysqli_query($conexao, $query);
+            
+            return true;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
     }
     function buscarPorId($id)
     {

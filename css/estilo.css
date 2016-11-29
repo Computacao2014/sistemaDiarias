@@ -2,14 +2,40 @@ body{
     background: rgba(240,240,240,1);
 }
 
-.formulario{
-    border: solid blue 0px;    
+.formulario{  
     border-radius: 10px;
-    background: rgba(20,90,80,0.2);
-    padding: 5px;
+    padding: 3%;
+    background: white;
+    border-width: 2%;
+    border-color: #337ab7;
+    border-style: solid;
 }
-
 .formulario h2{
      text-align: center;
      color: green;
+}
+.titulo
+{
+    text-align: center;
+    margin: 2%;
+    color: grey;
+}
+.formulario h4
+{
+    text-align: center;
+    color: grey;
+    padding: 2%;
+    margin: 0%;
+}
+.botao
+{
+    max-width: 97%;
+    border-radius: 0%;
+    margin: 2% 0%;
+}
+
+.entrada
+{
+    max-width: 97%;
+    border-radius: 0%;
 }

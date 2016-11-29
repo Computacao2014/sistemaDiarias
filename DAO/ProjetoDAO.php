@@ -21,12 +21,18 @@ class ProjetoDAO {
         $this->conexao = $conexao;
     }
     
- function inserir($projeto)
+    function inserir(Projeto $projeto)
     {
+        try {
+            $query = "insert into projeto(nome) values('{$projeto->getNome()}')";
 
-        $query = "insert into projeto(nome) values('{$projeto->getNome()}')";
-
-        mysqli_query($conexao, $query);
+            mysqli_query($conexao, $query);
+            
+            return true;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            return false;
+        }
     }
     function buscarPorId($id)
     {

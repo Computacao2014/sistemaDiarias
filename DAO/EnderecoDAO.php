@@ -17,12 +17,19 @@ class EnderecoDAO
         $this->conexao = $conexao;
     }
 
-    function inserir($endereco)
+    function inserir(Endereco $endereco)
     {
+        try {
+            $query = "insert into endereco(rua,numero,bairro,cidade,cep,estado) values('{$endereco->getRua()}','{$endereco->getNumero()}','{$endereco->getBairro()}','{$endereco->getCidade()}','{$endereco->getCep()}','{$endereco->getEstado()}')";
 
-        $query = "insert into endereco(rua,numero,bairro,cidade,cep,estado) values('{$endereco->getRua()}','{$endereco->getNumero()}','{$endereco->getBairro()}','{$endereco->getCidade()}','{$endereco->getCep()}','{$endereco->getEstado()}')";
-
-        mysqli_query($conexao, $query);
+            mysqli_query($conexao, $query);
+            
+            return true;
+        } catch (Exception $ex) {
+            echo $ex->getMessage();
+            
+            return false;
+        }
     }
     function buscarPorCep($cep)
     {

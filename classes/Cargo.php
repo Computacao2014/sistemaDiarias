@@ -9,18 +9,16 @@ class Cargo {
     
     private $id;
     private $nome;
-    private $classe;
     private $perfilDiaria;
     
     function __construct() {
         $this->perfilDiaria = new PerfilDiaria();
     }
     
-    function __construct1($id,$nome,$classe,$perfil)
+    function __construct1($id,$nome,$perfil)
     {
         $this->id = $id;
         $this->nome = $nome;
-        $this->classe = $classe;
         $this->perfilDiaria = $perfil;
     }
 
@@ -42,14 +40,6 @@ class Cargo {
         $this->nome = nome;
     }
     
-    public function getClasse()
-    {
-        return $this->classe;
-    }
-    public function setClasse($classe)
-    {
-        $this->classe = classe;
-    }
     public function getPerfilDiaria()
     {
         return $this->perfilDiaria;

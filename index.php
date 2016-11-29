@@ -1,8 +1,8 @@
 <?php
     require_once ('classes/pagina.php');
-    
     //Extende da classe Pagina
     class Pagina_Principal extends Pagina{
+        
         public function exibir_body() {
 //            parent::exibir_body();//Metodo da classe PAI
             
@@ -12,38 +12,43 @@
             <!-- Conteúdo Interno -->
             <div class="container">
                 <div class="row">                            
-                    <div class="col-xs-5"></div>
+                    <div class="col-md-5 col-sm-5 col-xs-3"></div>
 
-                    <div class="col-xs-2">
+                    <div class="col-md-2 col-sm-2 col-xs-6">
                         <img class="img-responsive" src="img/logo_uespi.png">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-3"></div>
-                    <div class="col-xs-6">
-                        <form autocomplete="off" class="form-signin formulario" action="controller/logica_login.php" method="post">
+                    <div class="col-sm-4 col-xs-1"></div>
+                    <div class="col-sm-4 col-xs-10">
+                        <div class="formulario">
+                            <form autocomplete="off" class="form-signin" action="controller/logica_login.php" method="post">
 
+                                <strong><h4>Matricula</h4></strong></br>
+                                <input type="text" class="form-control entrada" id="inputMatricula" name="matricula">
 
-                        <table class="table" >
-                          <tr>
-                            <td colspan="2"><h2 class="form-signin-heading">Efetue Login</h2></td>
-                          </tr>
-                          <tr>
-                            <td>Matricula:</td>
-                            <td><input type="text" class="form-control" id="inputMatricula" name="matricula"></td>
-                          </tr>
-                          <tr>
-                            <td>Senha:</td>
-                            <td><input type="password" id="inputPassword" class="form-control" name="senha"></td>
-                          </tr>
-                          <tr>
-                            <td></td>
-                            <td><input type="submit" class="btn btn-lg btn-primary btn-block" value="Entrar"></td>
-                          </tr>
-                        </table>
-                                <div class="centralizado"><a href="recuperarconta">Recuperar Senha</a> <br/><a href="dadosmatricula/consultar.php" class="btn btn-danger">Ainda não recebeu a matricula?</a></div>
-                      </form>
+                                <strong><h4>Senha</h4></strong></br>
+                                <input type="password" id="inputPassword" class="form-control entrada" name="senha">
+                                
+                                <?php 
+                                if(filter_has_var(INPUT_GET, 'resultado')){
+                                    if(filter_input(INPUT_GET, 'resultado') == 'erro'){
+                                    ?>
+                                    <div class="alert alert-danger" style="margin-top: 10px;">
+                                        <strong>Erro!</strong> Usuário e/ou senha inválidos!
+                                    </div>
+                                    <?php
+                                    }
+                                }
+                                ?>
+                                
+                                
+                                
+                                <input type="submit" class="btn btn-lg btn-primary btn-block botao" value="Entrar">
+                                <input class="btn btn-lg btn-danger btn-block botao" value="Recuperar senha">
+                            </form>
+                        </div>
                     </div>
                 </div>
 
@@ -55,7 +60,7 @@
         
     }
     
-    $t = new Pagina_Principal();
+    $t = new Pagina_Principal(NULL);
     $t->set_titulo('Pagina inicial');
     
     
