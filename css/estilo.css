@@ -34,8 +34,15 @@ body{
     margin: 2% 0%;
 }
 
+.botaoBusca
+{
+    max-width: 99%;
+    border-radius: 0%;
+    margin: 2% 0%;
+}
 .entrada
 {
     max-width: 97%;
     border-radius: 0%;
 }
+

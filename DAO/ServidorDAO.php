@@ -15,7 +15,8 @@ class ServidorDAO{
     
     public function inserir_servidor(Servidor $servidor){        
         try{
-            $con = $this->conexao;
+            $dao = new DAO();
+            $con = $dao->getConexao();
             $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES (?,?,?,?,?,?)";
             $stmt = $con->prepare($query);
             
@@ -41,10 +42,12 @@ class ServidorDAO{
                 return false;            
             }
             $stmt->close();
+            $dao->fecharConexao();
             return true;
         } catch (Exception $e)
         {
             echo $e->getMessage();
+            $dao->fecharConexao();
             return false;
         }
             
@@ -64,5 +67,23 @@ class ServidorDAO{
         }
 
         return $servidores;
+    
     }
+    public function listarTodos()
+    {
+        $dao = new DAO();
+        
+        $query = "SELECT * FROM servidor";
+        $resultado = mysqli_query($dao->getConexao(), $query);
+
+        $servidores = array();
+
+        while($servidor = mysqli_fetch_assoc($resultado))
+        {
+            array_push($servidores,$servidor);
+        }
+        $dao->fecharConexao();
+        return $servidores;
+    }
+        
 }

@@ -23,6 +23,6 @@
      }
      
      function fecharConexao(){
-        return $this->con->close();
+        $this->con->close();
      }
  }

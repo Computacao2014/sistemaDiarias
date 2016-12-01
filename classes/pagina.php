@@ -6,7 +6,7 @@ class Pagina {
     private $servidorLogado;
     
     function Pagina(){
-        $this->titulo = "Titulo da pagina";
+        $this->titulo = "Bem vindo!";
     }
     function getServidorLogado()
     {
@@ -66,7 +66,9 @@ class Pagina {
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="cadastro_servidores.php">Cadastrar Servidor</a></li>
+                    <li><a href="buscar_servidores.php">Buscar Servidor</a></li>
                   </ul>
+                    
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
