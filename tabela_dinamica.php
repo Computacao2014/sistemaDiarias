@@ -31,15 +31,16 @@ class tabela_dinamica
         $this->dados=$dados;
     
     }
-    public function _construct2(array $colunas,String $matricula)
+    public function _construct2(array $colunas,array $busca)
     {
         $this->colunas = $colunas;
-        if($matricula == "")
-        {
-            $dao = new DAO();
-            $servidor = new ServidorDAO($dao->getConexao());
-            $this->dados = $servidor->buscarPorMatricula($matricula);
-        }
+        $matricula = $busca[0];
+        $nome =  $busca[1];
+        $dao = new DAO();
+        $servidor = new ServidorDAO($dao->getConexao());
+        $this->dados = $servidor->buscarPorMatricula($matricula);
+        
+        
     }
 
     public function setDados(array $dados)
