@@ -8,12 +8,10 @@ function logar($matricula, $senha){
     session_start();
     echo $matricula;
     echo $senha;
-    $dao = new DAO();
-    $servidorDAO = new ServidorDAO($dao->getConexao());
-    $servidores = $servidorDAO->buscarPorMatricula($matricula);
+    $servidorDAO = new ServidorDAO();
+    $servidor = $servidorDAO->buscarPorMatricula($matricula);
 
-    if(count($servidores)==1){
-        $servidor =  $servidores[0];
+    if($servidor!=NULL){
         if($servidor['senha'] == $senha){
             $_SESSION['servidor'] = $servidor;
             header("Location: ../pagina_principal.php");
