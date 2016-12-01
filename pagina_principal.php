@@ -10,5 +10,5 @@ class PaginaPrincipal extends Pagina
 {
     
 }
-$pag = new PaginaPrincipal(NULL);
+$pag = new PaginaPrincipal();
 $pag->display();

@@ -68,13 +68,13 @@ class BuscarServidores extends Pagina
                </div>
         <?php
         $lista = array("Matricula","CPF","Email","Nome","Senha","Id_cargo");
-        $tabela = new tabela_dinamica($lista,$_POST['matricula']);
+        $tabela = new tabela_dinamica($lista);
         $tabela->tabela('Resultados');
     }
 }
-session_start();
-$t = new BuscarServidores($_SESSION['servidor']);
+
+$t = new BuscarServidores();
 
 $t->set_titulo('Buscar Servidores');
 
-$t->display();
+    $t->display();
