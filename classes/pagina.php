@@ -102,7 +102,7 @@ class Pagina {
               </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Nome<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php $_SESSION['servidor']['nome']; ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="controller/logica_deslogar.php">Sair</a></li>
                         </ul>
