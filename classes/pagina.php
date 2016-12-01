@@ -1,5 +1,5 @@
 <?php
-$root = $_SERVER['DOCUMENT_ROOT'].'/SistemaDiariasM47';
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
 require_once "$root/DAO/ServidorDAO.php";
 class Pagina {
     
