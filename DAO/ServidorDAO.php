@@ -5,18 +5,10 @@ require_once 'DAO.php';
 
 
 class ServidorDAO{
-    
-    private $conexao;
-    
-    public function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
-    
+        
     public function inserir_servidor(Servidor $servidor){        
         try{
-            $dao = new DAO();
-            $con = $dao->getConexao();
+            $con = $this->conexao;
             $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo) VALUES (?,?,?,?,?,?)";
             $stmt = $con->prepare($query);
             
@@ -42,12 +34,10 @@ class ServidorDAO{
                 return false;            
             }
             $stmt->close();
-            $dao->fecharConexao();
             return true;
         } catch (Exception $e)
         {
             echo $e->getMessage();
-            $dao->fecharConexao();
             return false;
         }
             
@@ -56,34 +46,32 @@ class ServidorDAO{
     public function buscarPorMatricula($matricula)
     {
         $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}'";
-
-        $resultado = mysqli_query($this->conexao, $query);
-
-        $servidores = array();
-
-        while($servidor = mysqli_fetch_assoc($resultado))
-        {
-            array_push($servidores,$servidor);
-        }
-
-        return $servidores;
-    
-    }
-    public function listarTodos()
-    {
         $dao = new DAO();
+        $conexao = $dao->getConexao();
         
-        $query = "SELECT * FROM servidor";
-        $resultado = mysqli_query($dao->getConexao(), $query);
-
-        $servidores = array();
-
-        while($servidor = mysqli_fetch_assoc($resultado))
-        {
-            array_push($servidores,$servidor);
+        $resultado = $conexao->query($query);
+        $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        if(count($arrayServidores)==0){
+            $dao->fecharConexao();
+            return NULL;
         }
         $dao->fecharConexao();
-        return $servidores;
+        return $arrayServidores[0];
     }
+    
+    public function listarTodos(){
+        $query = "SELECT * FROM servidor ORDER BY nome ASC";
+        $dao = new DAO();
+        $conexao = $dao->getConexao();
         
+        $resultado = $conexao->query($query);
+        $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        if(count($arrayServidores)==0){
+            $dao->fecharConexao();
+            return NULL;
+        }
+        
+        $dao->fecharConexao();
+        return $arrayServidores;
+    }
 }

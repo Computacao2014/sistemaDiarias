@@ -1,12 +1,13 @@
 <?php
-
+$root = $_SERVER['DOCUMENT_ROOT'].'/SistemaDiariasM47';
+require_once "$root/DAO/ServidorDAO.php";
 class Pagina {
     
     private $titulo;
     private $servidorLogado;
     
     function Pagina(){
-        $this->titulo = "Bem vindo!";
+        $this->titulo = "Titulo da pagina";
     }
     function getServidorLogado()
     {
@@ -14,6 +15,22 @@ class Pagina {
     }
 
     final function display(){
+        session_start();
+        if(!isset($_SESSION['servidor'])){//Se seção não exixtir
+            header("Location: index.php?resultado=ecessonegado");
+        }else{//Se a seção existir
+            $servidorSessao = $_SESSION['servidor'];
+            $servidorDao = new ServidorDAO();
+            $servidorBanco = $servidorDao->buscarPorMatricula($servidorSessao['matricula']);
+            if($servidorBanco==NULL){//Se NÃO existir um servidor registrado com essa matricula
+                header("Location: index.php?resultado=erro");
+            }else{//Se existir um servidor registrado com essa matricula
+                
+                if(!$servidorBanco['senha']==$servidorSessao['senha']){
+                    header("Location: index.php?resultado=erro");
+                }
+            }
+        }
         echo "<!DOCTYPE html>\n";
         echo "<html lang='pt-br'>\n";
         echo "<head>\n";
@@ -66,9 +83,7 @@ class Pagina {
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="cadastro_servidores.php">Cadastrar Servidor</a></li>
-                    <li><a href="buscar_servidores.php">Buscar Servidor</a></li>
                   </ul>
-                    
                 </li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
@@ -78,13 +93,16 @@ class Pagina {
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil Diaria
-                  <span class="caret"></span></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil Diaria<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="cadastro_perfil_de_diaria.php">Cadastrar</a></li>
                   </ul>
                 </li>
               </ul>
+                <ul class="nav navbar-nav navbar-right" style="border: solid 1px white">
+                    <li><a href="#">Nome</a></li>
+                    <li>Sair</li>
+                </ul>
             </div>
           </nav>
           

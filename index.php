@@ -1,12 +1,16 @@
-<?php
-    require_once ('classes/pagina.php');
-    //Extende da classe Pagina
-    class Pagina_Principal extends Pagina{
-        
-        public function exibir_body() {
-//            parent::exibir_body();//Metodo da classe PAI
-            
-            ?>
+<html>
+    <head>
+        <title>Sistema Diárias</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="css/estilo.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </head>
+    
+    <body>
         <!-- Conteúdo -->
           <div id="conteudo">
             <!-- Conteúdo Interno -->
@@ -55,16 +59,8 @@
 
             </div> <!-- /Conteúdo Interno -->
           </div><!-- /Conteúdo -->
-            
-            <?php
-        }
+    </body>
+    
+</html>
         
-    }
-    
-    $t = new Pagina_Principal(NULL);
-    $t->set_titulo('Pagina inicial');
-    
-    
-    $t->display();
-    
-?>
+  
