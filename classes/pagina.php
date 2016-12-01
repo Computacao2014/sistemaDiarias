@@ -60,6 +60,7 @@ class Pagina {
           <link rel="stylesheet" href="css/estilo.css">
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
           <script src="bootstrap/js/bootstrap.min.js"></script>
+          <script src="js/funcoes.js"></script>
         <?php
         
     }
@@ -102,7 +103,7 @@ class Pagina {
               </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php $_SESSION['servidor']['nome']; ?><span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_SESSION['servidor']['nome']; ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="controller/logica_deslogar.php">Sair</a></li>
                         </ul>
