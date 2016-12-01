@@ -1,3 +1,12 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Banco de dados: `sistemadiarias`
 --
@@ -18,7 +27,7 @@ CREATE TABLE `cargo` (
 -- Fazendo dump de dados para tabela `cargo`
 --
 
-INSERT INTO `cargo` VALUES
+INSERT INTO `cargo` (`id`, `nome`, `id_perfil_diaria`) VALUES
 (1, 'SECRETÁRIOS', 1),
 (2, 'PROCURADOR GERAL', 1),
 (3, 'DEFENSOR GERAL', 1),
@@ -104,7 +113,7 @@ CREATE TABLE `pais` (
 -- Fazendo dump de dados para tabela `pais`
 --
 
-INSERT INTO `pais` VALUES
+INSERT INTO `pais` (`id_pais`, `categoria`, `nome`) VALUES
 (1, 'A', 'Afeganistão'),
 (2, 'A', 'Albânia'),
 (3, 'A', 'Argélia'),
@@ -219,7 +228,7 @@ CREATE TABLE `perfil_diaria` (
 -- Fazendo dump de dados para tabela `perfil_diaria`
 --
 
-INSERT INTO `perfil_diaria` VALUES
+INSERT INTO `perfil_diaria` (`id_perfil_diaria`, `nome`, `valor_no_estado`, `valor_fora_estado`, `valor_regiao_a`, `valor_regiao_b`, `valor_regiao_c`, `valor_regiao_d`) VALUES
 (1, 'Classe I', 172.5, 345, 200, 280, 330, 420),
 (2, 'Classe II', 120, 240, 190, 270, 320, 420),
 (3, 'Classe III', 75, 150, 180, 260, 310, 370);
@@ -397,6 +406,13 @@ ALTER TABLE `diaria_viagem`
 --
 ALTER TABLE `servidor`
   ADD CONSTRAINT `servidor_ibfk_1` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id`);
+
+--
+-- Restrições para tabelas `trajeto`
+--
+ALTER TABLE `trajeto`
+  ADD CONSTRAINT `trajeto_ibfk_1` FOREIGN KEY (`saida`) REFERENCES `endereco` (`id`),
+  ADD CONSTRAINT `trajeto_ibfk_2` FOREIGN KEY (`chegada`) REFERENCES `endereco` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
