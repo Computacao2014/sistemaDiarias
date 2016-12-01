@@ -26,7 +26,7 @@ class Pagina {
                 header("Location: index.php?resultado=erro");
             }else{//Se existir um servidor registrado com essa matricula
                 
-                if(!$servidorBanco['senha']==$servidorSessao['senha']){
+                if($servidorBanco['senha']!=$servidorSessao['senha']){
                     header("Location: index.php?resultado=erro");
                 }
             }
