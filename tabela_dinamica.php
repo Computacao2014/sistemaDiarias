@@ -79,7 +79,7 @@ class tabela_dinamica
                         <td><?=$servidor->email?></td>
                         <td><?=$servidor->nome?></td>
                         <td>
-                            <form action="alterar_servidores.php method="post" >
+                            <form action="alterar_servidores.php" method="post" >
                                 <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />
                                 <button class="btn btn-warning">alterar</button>
                             </form>
