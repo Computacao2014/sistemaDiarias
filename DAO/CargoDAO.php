@@ -38,7 +38,7 @@ class CargoDAO
             array_push($cargos,$cargo);
         }
         $con->close();
-        return $cargo;
+        return $cargos[0];
     }
     function buscarPorNome($nome)
     {

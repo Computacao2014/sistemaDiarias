@@ -36,6 +36,26 @@ class ServidorDAO{
             
             
     }
+    public function alterarServidor(Servidor $servidor){        
+        try{
+            $con = DAO::getConexao();
+            $query = "UPDATE servidor SET cpf='{$servidor->getCpf()}',SET email = '{$servidor->getEmail()}', SET nome = '{$servidor->getNome()}', SET senha = '{$servidor->getSenha()}', SET id_cargo = '{$servidor->getCargo()}' WHERE matricula = '{$servidor->getMatricula()}'";
+            
+            $resultado = $con->query($query);                        
+            if(!$resultado){
+                return false;            
+            }
+            
+            $con->close();
+            return true;
+        } catch (Exception $e)
+        {
+            echo $e->getMessage();
+            return false;
+        }
+            
+            
+    }
     public function buscarPorMatricula($matricula)
     {
         $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}'";

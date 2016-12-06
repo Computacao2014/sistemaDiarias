@@ -79,11 +79,14 @@ class tabela_dinamica
                         <td><?=$servidor->email?></td>
                         <td><?=$servidor->nome?></td>
                         <td>
-                            <a href="#"></a>
+                            <form action="alterar_servidores.php method="post" >
+                                <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />
+                                <button class="btn btn-warning">alterar</button>
+                            </form>
                         </td>
                         <td>
                             <form action="controller/remover_servidor.php?id=<?=$servidor->matricula?>" method="post">
-                                <input type="hidden" name="id" value="<?=$servidor->matricula?>" />
+                                <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />
                                 <button class="btn btn-danger">remover</button>
                             </form>
                         </td>
