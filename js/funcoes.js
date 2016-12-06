@@ -4,52 +4,19 @@
  * and open the template in the editor.
  */
 
-function AjaxF()
-{
- var ajax;
 
-    try
-    {
-        ajax = new XMLHttpRequest();
-    } 
-    catch(e) 
-    {
-        try
-        {
-            ajax = new ActiveXObject("Msxml2.XMLHTTP");
-        }
-        catch(e) 
-        {
-            try 
-            {
-                ajax = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            catch(e) 
-            {
-                alert("Seu browser não da suporte à AJAX!");
-                return false;
-            }
-        }
-    }
-    return ajax;
-}
 // Função que faz as requisição Ajax ao arquivo PHP
 function pegaDados()
 {
-    var ajax = AjaxF();	
-
-    ajax.onreadystatechange = function(){
-        if(ajax.readyState == 4)
-        {
-             document.getElementById('conteudo').innerHTML = ajax.responseText;
-        }
+    $.ajax({
+    type: "POST",
+    url: "buscar_servidores.php",
+    data: {
+      matricula: $('#matricula').val(),
+      nome: $('#nome').val()
+    },
+    success: function(data) {
+      $('#resultados').html(data);
     }
-
-    // Variável com os dados que serão enviados ao PHP
-    var matricula = "matricula="+document.getElementById('matricula').value;
-    var nome = "nome="+document.getElementById('nome').value;
-    
-    ajax.open("GET", "retorna_informacoes.php?"+matricula+"&"+nome, false);
-    ajax.setRequestHeader("Content-Type", "text/html");
-    ajax.send();
+  });
 }
