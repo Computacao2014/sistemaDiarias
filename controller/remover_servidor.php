@@ -10,5 +10,13 @@ require_once '../DAO/ServidorDAO.php';
 require_once '../DAO/DAO.php';
 
 if($_POST){
-    
+    $matricula = $_POST['matricula'];
+    $servidorDAO = new ServidorDAO();
+
+    if($servidorDAO->deletarServidor($matricula))
+    {
+        header("Location: ../buscar_servidores.php?resultado=true");
+    }  else {
+        header("Location: ../buscar_servidores.php?resultado=false");
+    }
 }

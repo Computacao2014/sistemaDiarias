@@ -16,7 +16,20 @@ function pegaDados()
       nome: $('#nome').val()
     },
     success: function(data) {
-      $('#resultados').html(data);
+      $('body').html(data);
+    }
+  });
+}
+
+function deletar() {
+  $.ajax({
+    type: "POST",
+    url: "buscar_servidores.php",
+    data: {
+      matricula: $('#matricula').val()
+    },
+    success: function(data) {
+      $('body').html(data);
     }
   });
 }
