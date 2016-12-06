@@ -69,13 +69,16 @@ class ServidorDAO{
     public function deletarServidor($matricula)
     {
         try {
-            $query = "DELETE * FROM servidor WHERE matricula = '{$matricula}'";
-            $dao = new DAO();
-            $conexao = $dao->getConexao();
-            $resultado = $conexao->query($query);
-            return true;
+            $query = "DELETE FROM servidor WHERE matricula = '{$matricula}'";
+            $con = DAO::getConexao();        
+            $resultado = $con->query($query);
+            $con->close();
+            if($resultado==TRUE){
+                return TRUE;
+            }
+            return FALSE;
         } catch (Exception $ex) {
-            return false;
+            return FALSE;
         }
         
     }
@@ -92,16 +95,5 @@ class ServidorDAO{
         }
         
         return $arrayServidores;
-    }
-    
-    public function removeByID($matricula){
-        $query = "DELETE FROM servidor WHERE matricula = '{$matricula}'";
-        $con = DAO::getConexao();        
-        $resultado = $con->query($query);
-        $con->close();
-        if($resultado==TRUE){
-            return TRUE;
-        }
-        return FALSE;
     }
 }
