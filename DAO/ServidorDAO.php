@@ -61,7 +61,7 @@ class ServidorDAO{
     
     public function buscaPorMatriculaOuNome($matricula,$nome)
     {
-        $query = "SELECT * FROM servidor WHERE matricula LIKE '{$matricula}' OR nome LIKE '%{$nome}%' ORDER BY nome ASC";
+        $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}' OR nome LIKE '%{$nome}%' ORDER BY nome ASC";
         $dao = new DAO();
         $conexao = $dao->getConexao();
         
@@ -74,7 +74,21 @@ class ServidorDAO{
         $dao->fecharConexao();
         return $arrayServidores;
     }
-
+    
+    public function deletarServidor($matricula)
+    {
+        try {
+            $query = "DELETE * FROM servidor WHERE matricula = '{$matricula}'";
+            $dao = new DAO();
+            $conexao = $dao->getConexao();
+            $resultado = $conexao->query($query);
+            return true;
+        } catch (Exception $ex) {
+            return false;
+        }
+        
+    }
+    
     public function listarTodos(){
         $query = "SELECT * FROM servidor ORDER BY nome ASC";
         $dao = new DAO();
