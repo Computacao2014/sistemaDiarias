@@ -11,11 +11,12 @@ if($_POST){
         $senha = $_POST['senha'];
         $confirmarSenha = $_POST['confirmacao'];
         $cargo = $_POST['cargo'];
+        $admin = $_POST['admin'];
         
-        $dao = new DAO();
-        $servidorDAO = new ServidorDAO($dao->getConexao());
+        $servidorDAO = new ServidorDAO();
         
         $servidor = new Servidor();
+        $servidor->setAdmin($admin);
         $servidor->setNome($nome);
         $servidor->setMatricula($matricula);
         $servidor->setCpf($cpf);
@@ -26,15 +27,17 @@ if($_POST){
         if($senha!=$confirmarSenha)
         {
             header("Location: ../cadastro_servidores.php?resultado=erroSenha");
-            $dao->fecharConexao();
         }else{
             try {
-               $servidorDAO->inserir_servidor($servidor);
-               header("Location: ../cadastro_servidores.php?resultado=sucesso");
-               $dao->fecharConexao();
+               $resultado = $servidorDAO->inserir_servidor($servidor);       
+               if($resultado==TRUE){
+                   header("Location: ../cadastro_servidores.php?resultado=sucesso");
+               }
+               else{
+                   header("Location: ../cadastro_servidores.php?resultado=erro");
+               }
             } catch (Exception $ex) {
                 header("Location: ../cadastro_servidores.php?resultado=erro");
-                $dao->fecharConexao();
             }
         }
         

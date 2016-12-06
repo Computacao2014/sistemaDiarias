@@ -97,6 +97,14 @@
                             
                         </div>
                         
+                        <div class="form-group">
+                            <label class="control-label col-sm-4">É um administrador?</label>
+                            <div class="col-sm-8">
+                                <label>SIM</label><input type="radio" name="admin" value="1">
+                                <label>NÃO</label><input type="radio" name="admin" value="0">
+                            </div>
+                        </div>
+                        
                         <div class="form-group">        
                           <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-lg btn-primary btn-block botao">Cadastrar</button>
@@ -159,10 +167,8 @@
     }
     function listagemCargo()
     {
-        $dao = new DAO();
-        $cargoDAO = new CargoDAO($dao->getConexao());
+        $cargoDAO = new CargoDAO();
         $cargos = $cargoDAO->listarTodos();
-        $dao->fecharConexao();
         return $cargos;
     }
         ?>

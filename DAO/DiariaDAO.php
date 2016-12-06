@@ -18,13 +18,6 @@ require_once 'classes/ModalidadeTransporte.php';
 require_once 'classes/Servidor.php';
 
 class DiariaDAO {
-    
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     public function inserir(Diaria $diaria)
     {
         try{
