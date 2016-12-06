@@ -137,7 +137,7 @@
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="alert alert-danger col-sm-10">
-                    <strong>O Servidor não foi contratado!</strong> 
+                    <strong>O Servidor não foi cadastrado!</strong> 
                 </div>
                 <div class="col-sm-1"></div>
             </div>

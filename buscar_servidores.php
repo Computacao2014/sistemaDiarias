@@ -29,7 +29,7 @@ class BuscarServidores extends Pagina
                     <div class="col-sm-1"></div>
 
                     <div class="col-sm-10 formulario">
-                        <form class="form-horizontal table">
+                        <form class="form-horizontal table" method="post">
                             <table class="table">
                                 <tr>
                                     <th>
@@ -67,22 +67,23 @@ class BuscarServidores extends Pagina
                         </form>
                     </div>
                </div>
-        <div id ="conteudo">
+        <div id ="resultados">
             <?php
             $matricula = "";
             $nome = ""; 
             if(filter_has_var(INPUT_POST, 'matricula'))
             {
-                $matricula = $_POST('matricula');
+                $matricula = $_POST['matricula'];
+                
             }
             if(filter_has_var(INPUT_POST, 'nome'))
             {
-                $nome = $_POST('nome');
+                $nome = $_POST['nome'];
+                
             }
-            
-            $lista = array("Matricula","CPF","Email","Nome","Senha","Id_cargo");
-            $tabela = new tabela_dinamica($lista,array($matricula,$nome));
-            $tabela->tabela('Resultados');
+            $lista = array("Matricula","CPF","Email","Nome","Alterar?","Remover?");
+            $tabela = new tabela_dinamica($lista);
+            $tabela->tabela('Resultados',$matricula,$nome);
             ?>
         </div>
         <?php

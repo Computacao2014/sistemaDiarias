@@ -20,8 +20,7 @@ class tabela_dinamica
     
     public function __construct(array $colunas) {
         $this->colunas = $colunas;
-        $dao = new DAO();
-        $servidores = new ServidorDAO($dao->getConexao());
+        $servidores = new ServidorDAO();
         $this->dados = $servidores->listarTodos();
     }
     
@@ -31,17 +30,7 @@ class tabela_dinamica
         $this->dados=$dados;
     
     }
-    public function _construct2(array $colunas,array $busca)
-    {
-        $this->colunas = $colunas;
-        $matricula = $busca[0];
-        $nome =  $busca[1];
-        $dao = new DAO();
-        $servidor = new ServidorDAO($dao->getConexao());
-        $this->dados = $servidor->buscarPorMatricula($matricula);
-        
-        
-    }
+    
 
     public function setDados(array $dados)
     {
@@ -52,14 +41,20 @@ class tabela_dinamica
     {
         $this->colunas = $colunas;
     }
-    public function tabela($titulo)
+    public function tabela($titulo,$matricula,$nome)
     {
+        if($matricula != "" || $nome != "")
+        {
+            $buscaServidor = new ServidorDAO();
+            $this->dados = $buscaServidor->buscaPorMatriculaOuNome($matricula, $nome);
+            
+        }
         ?>
         <h3 class="titulo"><?= $titulo?></h3>
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-10">
-            <table class="tabelas table-condensed table-striped table-responsive ">
+            <table class="tabelas table-condensed table-striped table-responsive">
                 <tr>
         <?php
             foreach ($this->colunas as $coluna)
@@ -72,21 +67,49 @@ class tabela_dinamica
                 </tr>
                 
         <?php
-            foreach ($this->dados as $dado)
+            if($this->dados !=NULL)
+            {
+                foreach ($this->dados as $dado)
+                {
+                    $servidor = (object)$dado;
+                    ?>
+                    <tr>
+                        <td><?=$servidor->matricula?></td>
+                        <td><?=$servidor->cpf?></td>
+                        <td><?=$servidor->email?></td>
+                        <td><?=$servidor->nome?></td>
+                        <td>
+                            <form>
+                                <button type="submit" method="post">Alterar</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form>
+                                <button type="submit" method="post">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    <?php
+                }
+            ?>
+            </table>
+            <?php
+            }else
             {
                 ?>
-                <tr>
-                <?php
-                    foreach ($dado as $item)
-                    {
-                ?>
-                <td><?=$item?></td>
-                <?php } ?>
-                </tr>
-                <?php } ?>
-            </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="alert alert-danger col-sm-9">
+                            <strong>Nenhum servidor foi encontrado  !</strong> 
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
             </div><!--Fim col-sm-6-->
             </div><!--Fim ROW-->
-        <?php
+       
+            <?php
+        }            
     }
-}
+

@@ -16,7 +16,7 @@ function pegaDados()
       nome: $('#nome').val()
     },
     success: function(data) {
-      $('#conteudo').html(data);
+      $('#resultados').html(data);
     }
   });
 }

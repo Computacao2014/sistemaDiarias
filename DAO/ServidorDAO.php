@@ -59,6 +59,22 @@ class ServidorDAO{
         return $arrayServidores[0];
     }
     
+    public function buscaPorMatriculaOuNome($matricula,$nome)
+    {
+        $query = "SELECT * FROM servidor WHERE matricula LIKE '{$matricula}' OR nome LIKE '%{$nome}%' ORDER BY nome ASC";
+        $dao = new DAO();
+        $conexao = $dao->getConexao();
+        
+        $resultado = $conexao->query($query);
+        $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        if(count($arrayServidores)==0){
+            $dao->fecharConexao();
+            return NULL;
+        }
+        $dao->fecharConexao();
+        return $arrayServidores;
+    }
+
     public function listarTodos(){
         $query = "SELECT * FROM servidor ORDER BY nome ASC";
         $dao = new DAO();
