@@ -15,6 +15,28 @@ class Pagina {
     }
 
     final function display(){
+        $this->verificaSessao();
+        echo "<!DOCTYPE html>\n";
+        echo "<html lang='pt-br'>\n";
+        echo "<head>\n";
+        $this->exibir_titulo();
+        $this->exibir_config();
+        
+        echo "</head>\n<body>\n";
+        $this->exibir_body();
+        
+        echo "</body>\n</html>";
+    }
+        
+    final function set_titulo($titulo){
+        $this->titulo = $titulo;
+    }
+            
+    function exibir_titulo(){
+        echo "<title>".$this->titulo."</title>\n";
+    }
+    
+    private function verificaSessao(){        
         session_start();
         if(!isset($_SESSION['servidor'])){//Se seção não exixtir
             header("Location: index.php?resultado=ecessonegado");
@@ -31,27 +53,9 @@ class Pagina {
                 }
             }
         }
-        echo "<!DOCTYPE html>\n";
-        echo "<html lang='pt-br'>\n";
-        echo "<head>\n";
-        $this->exibir_titulo();
-        $this->exibir_config();
-        
-        echo "</head>\n<body>\n";
-        $this->exibir_body();
-        
-        echo "</body>\n</html>";
     }
-    
-    final function set_titulo($titulo){
-        $this->titulo = $titulo;
-    }
-            
-    function exibir_titulo(){
-        echo "<title>".$this->titulo."</title>\n";
-    }
-    
-    private function exibir_config(){
+
+        private function exibir_config(){
         ?>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">

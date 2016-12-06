@@ -15,7 +15,20 @@ class Servidor
     private $cargo;
     private $senha;
     private $diariasSolicitadas = array();
+    private $admin;
+    
+    public function getAdmin(){
+        return $this->admin;
+    }
 
+    public function setAdmin($admin){
+        if($admin==1){
+            $this->admin = $admin;
+        }else{
+            $this->admin = 0;
+        }
+    }
+    
     public function getSenha()
     {
         return $this->senha;

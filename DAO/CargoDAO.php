@@ -10,32 +10,26 @@ require_once('classes/Cargo.php');
 
 class CargoDAO
 {
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
 
     function inserir(Cargo $cargo)
     {
         try {
             $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
-
-            mysqli_query($conexao, $query);
-            
-            return true;
+            $con = DAO::getConexao();
+            $resultado = $con->query($query);
+            $con->close();
+            return $resultado;
         } catch (Exception $ex) {
             echo $ex->getMessage();
-            
+            $con->close();
             return false;
         }
     }
     function buscarPorId($id)
     {
         $query = "select * from cargo where id = '{$id}'";
-
-        $resultado = mysqli_query($conexao, $query);
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
 
         $cargos = array();
 
@@ -43,14 +37,14 @@ class CargoDAO
         {
             array_push($cargos,$cargo);
         }
-
+        $con->close();
         return $cargo;
     }
     function buscarPorNome($nome)
     {
         $query = "select * from cargo where nome = '{$nome}'";
-
-        $resultado = mysqli_query($conexao, $query);
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
 
         $cargos = array();
 
@@ -58,14 +52,14 @@ class CargoDAO
         {
             array_push($cargos,$cargo);
         }
-
+        $con->close();
         return $cargo;
     }
     function listarTodos()
     {
-        $query = "select * from cargo";
-
-        $resultado = mysqli_query($this->conexao, $query);
+        $query = "select * from cargo order by nome asc";
+        $con = DAO::getConexao();
+        $resultado = $con->query($query);
 
         $cargos = array();
 
@@ -73,7 +67,7 @@ class CargoDAO
         {
             array_push($cargos,$cargo);
         }
-
+        $con->close();
         return $cargos;
     }
 }
