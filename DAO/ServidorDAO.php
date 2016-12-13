@@ -9,7 +9,7 @@ class ServidorDAO{
     public function inserir_servidor(Servidor $servidor){        
         try{
             $con = DAO::getConexao();
-            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo, titulacao, admin) VALUES (?,?,?,?,?,?,?,?)";
+            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo, admin) VALUES (?,?,?,?,?,?,?)";
             $stmt = $con->prepare($query);
             
             
@@ -22,7 +22,7 @@ class ServidorDAO{
             $admin = ($servidor->getAdmin());
             $titulacao = ($servidor->getTitulacao());
                                     
-            $stmt->bind_param("sssssiii",$matricula,$cpf,$email,$nome,$senha,$cargo,$titulacao,$admin);
+            $stmt->bind_param("sssssii",$matricula,$cpf,$email,$nome,$senha,$cargo,$admin);
             if(!$stmt->execute()){
                 return false;            
             }
@@ -90,11 +90,11 @@ class ServidorDAO{
         
         $resultado = $conexao->query($query);
         $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
+        $conexao->close();
         if(count($arrayServidores)==0){
-            $dao->fecharConexao();
             return NULL;
         }
-        $dao->fecharConexao();
+     
         return $arrayServidores;
     }
     

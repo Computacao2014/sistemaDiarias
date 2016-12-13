@@ -65,10 +65,10 @@ class alterar_servidores extends Pagina {
                 
                 <div class="col-sm-10 formulario">
                     <form class="form-horizontal table" action="controller/logica_alterar_servidor.php" method="post">
-                        <div class="form-group">
+                        <div class="form-group" display="none">
                           <label class="control-label col-sm-2" for="matricula">Matricula:</label>
                           <div class="col-sm-10">
-                              <input type="text" required="required" class="form-control" 
+                              <input display="none" required="required" class="form-control" 
                                      name="matricula" placeholder="Digite sua matricula" value="<?=$servidor->getMatricula()?>">
                           </div>
                         </div>
