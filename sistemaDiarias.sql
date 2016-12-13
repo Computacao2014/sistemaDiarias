@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Tempo de geração: 02/12/2016 às 18:43
+-- Tempo de geração: 13/12/2016 às 18:59
 -- Versão do servidor: 10.1.16-MariaDB
 -- Versão do PHP: 7.0.9
 
@@ -19,6 +19,17 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sistemadiarias`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `banco`
+--
+
+CREATE TABLE `banco` (
+  `cod_banco` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -63,6 +74,20 @@ INSERT INTO `cargo` (`id`, `nome`, `id_perfil_diaria`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura para tabela `conta_bancaria`
+--
+
+CREATE TABLE `conta_bancaria` (
+  `id_banco` int(11) NOT NULL,
+  `num_agencia` int(11) NOT NULL,
+  `num_conta` int(11) NOT NULL,
+  `tipo_conta` int(11) NOT NULL,
+  `id_servidor` varchar(15) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura para tabela `diaria_viagem`
 --
 
@@ -70,10 +95,11 @@ CREATE TABLE `diaria_viagem` (
   `id_diaria` bigint(20) NOT NULL,
   `quant_dias` int(11) DEFAULT NULL,
   `objeto_viagem` varchar(500) NOT NULL,
-  `data_inicial` varchar(10) NOT NULL,
-  `data_final` varchar(10) NOT NULL,
+  `data_inicial` date NOT NULL,
+  `data_final` date NOT NULL,
   `relato` varchar(2000) NOT NULL,
   `id_projeto` bigint(20) NOT NULL,
+  `id_evento` int(11) NOT NULL,
   `id_trajeto` bigint(20) NOT NULL,
   `id_modalidade` bigint(20) NOT NULL,
   `id_servidor` varchar(15) NOT NULL
@@ -94,6 +120,17 @@ CREATE TABLE `endereco` (
   `cep` varchar(9) NOT NULL,
   `estado` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `evento`
+--
+
+CREATE TABLE `evento` (
+  `id_evento` int(11) NOT NULL,
+  `nome` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -266,15 +303,16 @@ CREATE TABLE `servidor` (
   `nome` varchar(255) NOT NULL,
   `senha` varchar(50) NOT NULL,
   `id_cargo` bigint(20) DEFAULT NULL,
-  `id_titulacao` int(11) DEFAULT NULL
+  `id_titulacao` int(11) DEFAULT NULL,
+  `admin` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Fazendo dump de dados para tabela `servidor`
 --
 
-INSERT INTO `servidor` (`matricula`, `cpf`, `email`, `nome`, `senha`, `id_cargo`, `id_titulacao`) VALUES
-('1053253', '056651', 'matheusnumb1000@gmail.com', 'Matheus Araújo', '2104', NULL, NULL);
+INSERT INTO `servidor` (`matricula`, `cpf`, `email`, `nome`, `senha`, `id_cargo`, `id_titulacao`, `admin`) VALUES
+('1053253', '056651', 'matheusnumb1000@gmail.com', 'Matheus Araújo', '2104', NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -313,11 +351,25 @@ CREATE TABLE `trajeto` (
 --
 
 --
+-- Índices de tabela `banco`
+--
+ALTER TABLE `banco`
+  ADD PRIMARY KEY (`cod_banco`);
+
+--
 -- Índices de tabela `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_perfil_diaria` (`id_perfil_diaria`);
+
+--
+-- Índices de tabela `conta_bancaria`
+--
+ALTER TABLE `conta_bancaria`
+  ADD PRIMARY KEY (`id_banco`,`num_agencia`,`num_conta`,`tipo_conta`),
+  ADD KEY `id_banco` (`id_banco`),
+  ADD KEY `id_servidor` (`id_servidor`);
 
 --
 -- Índices de tabela `diaria_viagem`
@@ -327,13 +379,20 @@ ALTER TABLE `diaria_viagem`
   ADD KEY `id_projeto` (`id_projeto`),
   ADD KEY `id_trajeto` (`id_trajeto`),
   ADD KEY `id_modalidade` (`id_modalidade`),
-  ADD KEY `id_servidor` (`id_servidor`);
+  ADD KEY `id_servidor` (`id_servidor`),
+  ADD KEY `id_evento` (`id_evento`);
 
 --
 -- Índices de tabela `endereco`
 --
 ALTER TABLE `endereco`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Índices de tabela `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`id_evento`);
 
 --
 -- Índices de tabela `modalidade_transporte`
@@ -439,13 +498,21 @@ ALTER TABLE `cargo`
   ADD CONSTRAINT `cargo_ibfk_1` FOREIGN KEY (`id_perfil_diaria`) REFERENCES `perfil_diaria` (`id_perfil_diaria`);
 
 --
+-- Restrições para tabelas `conta_bancaria`
+--
+ALTER TABLE `conta_bancaria`
+  ADD CONSTRAINT `conta_bancaria_ibfk_1` FOREIGN KEY (`id_banco`) REFERENCES `banco` (`cod_banco`),
+  ADD CONSTRAINT `conta_bancaria_ibfk_2` FOREIGN KEY (`id_servidor`) REFERENCES `servidor` (`matricula`);
+
+--
 -- Restrições para tabelas `diaria_viagem`
 --
 ALTER TABLE `diaria_viagem`
   ADD CONSTRAINT `diaria_viagem_ibfk_1` FOREIGN KEY (`id_projeto`) REFERENCES `projeto` (`id`),
   ADD CONSTRAINT `diaria_viagem_ibfk_2` FOREIGN KEY (`id_trajeto`) REFERENCES `trajeto` (`id`),
   ADD CONSTRAINT `diaria_viagem_ibfk_3` FOREIGN KEY (`id_modalidade`) REFERENCES `modalidade_transporte` (`id`),
-  ADD CONSTRAINT `diaria_viagem_ibfk_4` FOREIGN KEY (`id_servidor`) REFERENCES `servidor` (`matricula`);
+  ADD CONSTRAINT `diaria_viagem_ibfk_4` FOREIGN KEY (`id_servidor`) REFERENCES `servidor` (`matricula`),
+  ADD CONSTRAINT `diaria_viagem_ibfk_5` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`);
 
 --
 -- Restrições para tabelas `servidor`
