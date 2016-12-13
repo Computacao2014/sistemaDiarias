@@ -9,7 +9,7 @@ require_once '../classes/Servidor.php';
 require_once '../DAO/ServidorDAO.php';
 require_once '../DAO/DAO.php';
 
-$matricula = $_POST['matricula'];
+        $matricula = $_POST['matricula'];
         $nome = $_POST['nome'];
         $cpf = $_POST['cpf'];
         $email = $_POST['email'];
@@ -33,14 +33,17 @@ $matricula = $_POST['matricula'];
             header("Location: ../alterar_servidores.php?resultado=erroSenha");
         }else{
             try {
-               $resultado = $servidorDAO->alterarServidor($servidor);       
+               
+               $resultado = $servidorDAO->alterarServidor($servidor);     
+               
                if($resultado==TRUE){
                    header("Location: ../alterar_servidores.php?resultado=sucesso");
                }
                else{
-                   header("Location: ../alterar_servidores.php?resultado=erro");
+                   header("Location: ../alterar_servidores.php?resultado=erro&matricula=$matricula");
                }
             } catch (Exception $ex) {
-                header("Location: ../cadastro_servidores.php?resultado=erro");
+                
+                header("Location: ../cadastro_servidores.php?resultado=erro&matricula=$matricula");
             }
         }

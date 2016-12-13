@@ -40,10 +40,11 @@ class ServidorDAO{
     public function alterarServidor(Servidor $servidor){        
         try{
             $con = DAO::getConexao();
-            $query = "UPDATE servidor SET cpf='{$servidor->getCpf()}',SET email = '{$servidor->getEmail()}', SET nome = '{$servidor->getNome()}', SET senha = '{$servidor->getSenha()}', SET id_cargo = '{$servidor->getCargo()}' WHERE matricula = '{$servidor->getMatricula()}'";
-            
+            $query = "UPDATE servidor SET cpf='{$servidor->getCpf()}',email = '{$servidor->getEmail()}',nome = '{$servidor->getNome()}',senha = '{$servidor->getSenha()}', id_cargo = '{$servidor->getCargo()}' WHERE matricula = '{$servidor->getMatricula()}'";
+            var_dump($query);
             $resultado = $con->query($query);                        
             if(!$resultado){
+                
                 return false;            
             }
             

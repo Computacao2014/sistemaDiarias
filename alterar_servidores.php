@@ -34,8 +34,14 @@ class alterar_servidores extends Pagina {
         
         public function exibir_form_cadastro_servidores(){
             $servidorDAO = new ServidorDAO();
-            $servidor = $servidorDAO->buscarPorMatricula($_POST['matricula']);
-            $_POST['servTemp'] = $servidor; 
+            if(isset($_POST['matricula']))
+            {
+                $servidor = $servidorDAO->buscarPorMatricula($_POST['matricula']);
+            }else{
+                $servidor = $servidorDAO->buscarPorMatricula($_GET['matricula']);
+            }
+            
+            
             if(filter_has_var(INPUT_GET, 'resultado')){
                 $resultado = filter_input(INPUT_GET, 'resultado');
                 if($resultado == 'sucesso'){
@@ -43,8 +49,7 @@ class alterar_servidores extends Pagina {
                 }else if($resultado == 'erro')
                 {
                     exibir_erro();
-                    $matricula = (object)$_POST['servTemp'];
-                    $servidor = $servidorDAO->buscarPorMatricula($matricula);
+                
                 }else if($resultado == 'erroSenha')
                 {
                     exibir_erroSenha();
@@ -64,7 +69,7 @@ class alterar_servidores extends Pagina {
                           <label class="control-label col-sm-2" for="matricula">Matricula:</label>
                           <div class="col-sm-10">
                               <input type="text" required="required" class="form-control" 
-                                     name="matricula" placeholder="Digite sua matricula" value="<?=$servidor->matricula?>">
+                                     name="matricula" placeholder="Digite sua matricula" value="<?=$servidor->getMatricula()?>">
                           </div>
                         </div>
                         
@@ -72,7 +77,7 @@ class alterar_servidores extends Pagina {
                           <label class="control-label col-sm-2" for="nome">Nome:</label>
                           <div class="col-sm-10">
                               <input type="text" required="required" class="form-control" 
-                                     name="nome" placeholder="Digite seu nome" value="<?=$servidor->nome?>">
+                                     name="nome" placeholder="Digite seu nome" value="<?=$servidor->getNome()?>">
                           </div>
                         </div>  
                         
@@ -81,7 +86,7 @@ class alterar_servidores extends Pagina {
                           <div class="col-sm-10">          
                               <input type="text" pattern="^\d{3}.\d{3}.\d{3}-\d{2}" 
                                      required="required" class="form-control" name="cpf" 
-                                     placeholder="000.000.000-00" value="<?=$servidor->cpf?>">
+                                     placeholder="000.000.000-00" value="<?=$servidor->getCpf()?>">
                           </div>
                         </div>
                         
@@ -90,7 +95,7 @@ class alterar_servidores extends Pagina {
                           <div class="col-sm-10">          
                               <input type="email" required="required" 
                                      class="form-control" name="email" 
-                                     placeholder="servidor@email.com" value="<?=$servidor->email?>">
+                                     placeholder="servidor@email.com" value="<?=$servidor->getEmail()?>">
                           </div>
                         </div>
 
@@ -99,7 +104,7 @@ class alterar_servidores extends Pagina {
                           <div class="col-sm-10">          
                             <input type="password" required="required"
                                    class="form-control" name="senha" 
-                                   placeholder="Digite sua senha" value="<?=$servidor->senha?>">
+                                   placeholder="Digite sua senha" value="<?=$servidor->getSenha()?>">
                           </div>
                         </div>
                         
@@ -108,13 +113,13 @@ class alterar_servidores extends Pagina {
                           <div class="col-sm-10">          
                             <input type="password" required="required" 
                                    class="form-control" name="confirmacao" 
-                                   placeholder="Confirmar senha" value="<?=$servidor->senha?>">
+                                   placeholder="Confirmar senha" value="<?=$servidor->getSenha()?>">
                           </div>
                         </div>
                         <div class="form-group">
                             <?php
                                 $cargoDAO = new CargoDAO();
-                                $cargo = $cargoDAO->buscarPorId($servidor->id_cargo);
+                                $cargo = $cargoDAO->buscarPorId($servidor->getCargo());
                                 $cargo = (object)$cargo;
                             ?>
                             <label class="control-label col-sm-2">Seu cargo atual é:</label>
@@ -152,6 +157,7 @@ class alterar_servidores extends Pagina {
     $t = new alterar_servidores();
     
     $t->set_titulo('Cadastro de servidores');
+
     
     $t->display();
     
