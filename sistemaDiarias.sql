@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.2
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Tempo de geração: 02/12/2016 às 18:43
+-- Versão do servidor: 10.1.16-MariaDB
+-- Versão do PHP: 7.0.9
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -253,10 +262,39 @@ CREATE TABLE `projeto` (
 CREATE TABLE `servidor` (
   `matricula` varchar(15) NOT NULL,
   `cpf` varchar(15) NOT NULL,
+  `email` varchar(70) DEFAULT NULL,
   `nome` varchar(255) NOT NULL,
   `senha` varchar(50) NOT NULL,
-  `id_cargo` bigint(20) DEFAULT NULL
+  `id_cargo` bigint(20) DEFAULT NULL,
+  `id_titulacao` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Fazendo dump de dados para tabela `servidor`
+--
+
+INSERT INTO `servidor` (`matricula`, `cpf`, `email`, `nome`, `senha`, `id_cargo`, `id_titulacao`) VALUES
+('1053253', '056651', 'matheusnumb1000@gmail.com', 'Matheus Araújo', '2104', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `titulacao`
+--
+
+CREATE TABLE `titulacao` (
+  `id_titulacao` int(11) NOT NULL,
+  `nome` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Fazendo dump de dados para tabela `titulacao`
+--
+
+INSERT INTO `titulacao` (`id_titulacao`, `nome`) VALUES
+(1, 'Graduação'),
+(2, 'Mestrado'),
+(3, 'Doutorado');
 
 -- --------------------------------------------------------
 
@@ -328,7 +366,15 @@ ALTER TABLE `servidor`
   ADD PRIMARY KEY (`matricula`),
   ADD UNIQUE KEY `cpf` (`cpf`),
   ADD UNIQUE KEY `matricula` (`matricula`),
-  ADD KEY `id_cargo` (`id_cargo`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `id_cargo` (`id_cargo`),
+  ADD KEY `id_titulacao` (`id_titulacao`);
+
+--
+-- Índices de tabela `titulacao`
+--
+ALTER TABLE `titulacao`
+  ADD PRIMARY KEY (`id_titulacao`);
 
 --
 -- Índices de tabela `trajeto`
@@ -405,7 +451,8 @@ ALTER TABLE `diaria_viagem`
 -- Restrições para tabelas `servidor`
 --
 ALTER TABLE `servidor`
-  ADD CONSTRAINT `servidor_ibfk_1` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id`);
+  ADD CONSTRAINT `servidor_ibfk_1` FOREIGN KEY (`id_cargo`) REFERENCES `cargo` (`id`),
+  ADD CONSTRAINT `servidor_ibfk_2` FOREIGN KEY (`id_titulacao`) REFERENCES `titulacao` (`id_titulacao`);
 
 --
 -- Restrições para tabelas `trajeto`

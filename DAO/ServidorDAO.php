@@ -1,6 +1,6 @@
 <?php
-
-//require_once '../classes/Servidor.php';
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
+require_once "$root/classes/Servidor.php";
 require_once 'DAO.php';
 
 
@@ -9,7 +9,7 @@ class ServidorDAO{
     public function inserir_servidor(Servidor $servidor){        
         try{
             $con = DAO::getConexao();
-            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo, admin) VALUES (?,?,?,?,?,?,?)";
+            $query = "INSERT INTO servidor (matricula, cpf, email, nome, senha, id_cargo, titulacao, admin) VALUES (?,?,?,?,?,?,?,?)";
             $stmt = $con->prepare($query);
             
             
@@ -20,8 +20,9 @@ class ServidorDAO{
             $email = ($servidor->getEmail());
             $cargo = ($servidor->getCargo());
             $admin = ($servidor->getAdmin());
+            $titulacao = ($servidor->getTitulacao());
                                     
-            $stmt->bind_param("sssssii",$matricula,$cpf,$email,$nome,$senha,$cargo,$admin);
+            $stmt->bind_param("sssssiii",$matricula,$cpf,$email,$nome,$senha,$cargo,$titulacao,$admin);
             if(!$stmt->execute()){
                 return false;            
             }
@@ -40,14 +41,24 @@ class ServidorDAO{
     {
         $query = "SELECT * FROM servidor WHERE matricula = '{$matricula}'";
         $con = DAO::getConexao();
+        $servidor = new Servidor();
         
         $resultado = $con->query($query);
         $arrayServidores = $resultado->fetch_all(MYSQLI_ASSOC);
         $con->close();
         if(count($arrayServidores)==0){
             return NULL;
+        }else{
+            $servidor->setAdmin($arrayServidores[0]['admin']);
+            $servidor->setCargo($arrayServidores[0]['id_cargo']);
+            $servidor->setCpf($arrayServidores[0]['cpf']);
+            $servidor->setEmail($arrayServidores[0]['email']);
+            $servidor->setMatricula($arrayServidores[0]['matricula']);
+            $servidor->setNome($arrayServidores[0]['nome']);
+            $servidor->setSenha($arrayServidores[0]['senha']);
+            $servidor->setTitulacao($arrayServidores[0]['id_titulacao']);
+            return $servidor;
         }
-        return $arrayServidores[0];
     }
     
     public function buscaPorMatriculaOuNome($matricula,$nome)

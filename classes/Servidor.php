@@ -16,7 +16,17 @@ class Servidor
     private $senha;
     private $diariasSolicitadas = array();
     private $admin;
-    
+    private $titulacao;
+
+    public function getTitulacao(){
+        return $this->titulacao;
+    }
+
+    public function setTitulacao($titulacao){
+        $this->titulacao = $titulacao;
+    }
+
+
     public function getAdmin(){
         return $this->admin;
     }

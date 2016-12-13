@@ -43,13 +43,15 @@ class Pagina {
         }else{//Se a seção existir
             $servidorSessao = $_SESSION['servidor'];
             $servidorDao = new ServidorDAO();
-            $servidorBanco = $servidorDao->buscarPorMatricula($servidorSessao['matricula']);
+            $servidorBanco = $servidorDao->buscarPorMatricula($servidorSessao->getMatricula());
             if($servidorBanco==NULL){//Se NÃO existir um servidor registrado com essa matricula
                 header("Location: index.php?resultado=erro");
             }else{//Se existir um servidor registrado com essa matricula
                 
-                if($servidorBanco['senha']!=$servidorSessao['senha']){
+                if($servidorBanco->getSenha()!=$servidorSessao->getSenha()){
                     header("Location: index.php?resultado=erro");
+                }if($servidorBanco->getSenha()==$servidorSessao->getSenha()){
+                    return true;
                 }
             }
         }
@@ -82,7 +84,7 @@ class Pagina {
                 <a class="navbar-brand" href="#">Sistemas Diarias</a>
               </div>
               <ul class="nav navbar-nav">
-                  <li class="active"><a href="pagina_principal.php">Home</a></li>
+                  <li><a href="pagina_principal.php">Home</a></li>
                 <li class="dropdown">
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Servidores
                   <span class="caret"></span></a>
@@ -107,8 +109,9 @@ class Pagina {
               </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_SESSION['servidor']['nome']; ?><span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_SESSION['servidor']->getNome(); ?><span class="caret"></span></a>
                         <ul class="dropdown-menu">
+                            <li><a href="#">Meu perfil</a></li>
                             <li><a href="controller/logica_deslogar.php">Sair</a></li>
                         </ul>
                     </li>
@@ -120,6 +123,42 @@ class Pagina {
         
         <?php
     }
+    
+    function exibir_navbar_servidor(){
+        ?>
+          <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Sistemas Diarias</a>
+              </div>
+              <ul class="nav navbar-nav">
+                  <li><a href="pagina_principal.php">Home</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Solicitar</a></li>
+                    <li><a href="#">Histórico</a></li>
+                  </ul>
+                </li>
+              </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><?php echo $_SESSION['servidor']['nome']; ?><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Meu perfil</a></li>
+                            <li><a href="controller/logica_deslogar.php">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+          </nav>
+          
+        
+        
+        <?php
+    }
+    
 }
 
 
