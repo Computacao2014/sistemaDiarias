@@ -34,7 +34,8 @@ class alterar_servidores extends Pagina {
         
         public function exibir_form_cadastro_servidores(){
             $servidorDAO = new ServidorDAO();
-            $servidor = (object)$servidorDAO->buscarPorMatricula($_POST['matricula']);
+            $servidor = $servidorDAO->buscarPorMatricula($_POST['matricula']);
+            $_POST['servTemp'] = $servidor; 
             if(filter_has_var(INPUT_GET, 'resultado')){
                 $resultado = filter_input(INPUT_GET, 'resultado');
                 if($resultado == 'sucesso'){
@@ -42,6 +43,8 @@ class alterar_servidores extends Pagina {
                 }else if($resultado == 'erro')
                 {
                     exibir_erro();
+                    $matricula = (object)$_POST['servTemp'];
+                    $servidor = $servidorDAO->buscarPorMatricula($matricula);
                 }else if($resultado == 'erroSenha')
                 {
                     exibir_erroSenha();
