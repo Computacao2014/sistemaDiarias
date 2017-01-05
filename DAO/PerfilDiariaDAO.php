@@ -9,18 +9,12 @@ require_once('class/PerfilDiaria.php');
 class PerfilDiariaDAO {
     //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(PerfilDiaria $perfil_diaria)
     {
         try {
-            $query = "insert into perfil_diaria(valor_no_estado,valor_fora_estado,classe) values('{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()->getClasse()}')";
+            $query = "insert into perfil_diaria(nome,valor_no_estado,valor_fora_estado,valor_regiao_a,valor_regiao_b,valor_regiao_c,valor_regiao_d) values()";
 
-            mysqli_query($conexao, $query);
+            mysqli_query(DAO::getConexao(), $query);
             
             return true;
         } catch (Exception $ex) {
@@ -32,7 +26,7 @@ class PerfilDiariaDAO {
     {
         $query = "select * from perfil_diaria where id = '{$id}'";
 
-        $resultado = mysqli_query($conexao, $query);
+        $resultado = mysqli_query(DAO::getConexao(), $query);
 
         $perfil_diaria = array();
 
@@ -43,11 +37,11 @@ class PerfilDiariaDAO {
 
         return $perfil_diaria;
     }
-    function buscarPorClasse($classe)
+    function buscarPorNome($classe)
     {
-        $query = "select * from perfil_diaria where classe = '{$classe}'";
+        $query = "select * from perfil_diaria where nome = '{$classe}'";
 
-        $resultado = mysqli_query($conexao, $query);
+        $resultado = mysqli_query(DAO::getConexao(), $query);
 
         $perfil_diaria = array();
 
@@ -62,7 +56,7 @@ class PerfilDiariaDAO {
     {
         $query = "select * from perfil_diaria";
 
-        $resultado = mysqli_query($conexao, $query);
+        $resultado = mysqli_query(DAO::getConexao(), $query);
 
         $cargos = array();
 

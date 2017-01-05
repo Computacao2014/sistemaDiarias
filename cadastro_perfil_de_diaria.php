@@ -22,64 +22,58 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10 formulario">
                     
-                    <form class="form-horizontal table">
+                    <form class="form-horizontal table" action = "controller/logica_solicitacao_diarias.php" method="post">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="Classe">Classe:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Ex: Classe LD" name="classe"/>
+                                <input type="number" class="form-control" placeholder="Ex: Classe LD" name="classe"/>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="ValorA">Valor Região A:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoA"/>
+                                  <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoA"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="ValorA">Valor Região B:</label>
+                            <label class="control-label col-sm-2" for="ValorB">Valor Região B:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoB"/>
+                                  <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoB"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="ValorA">Valor Região C:</label>
+                            <label class="control-label col-sm-2" for="ValorC">Valor Região C:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoC"/>
+                                <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoC"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="ValorA">Valor Região D:</label>
+                            <label class="control-label col-sm-2" for="ValorD">Valor Região D:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoD"/>
+                                <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoD"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="ValorA">Valor no Estado:</label>
+                            <label class="control-label col-sm-2" for="ValorE">Valor no Estado:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoD"/>
+                                <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoE"/>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="ValorA">Valor fora do Estado:</label>
+                            <label class="control-label col-sm-2" for="ValorF">Valor fora do Estado:</label>
                             <div class="col-sm-10">
-                                  <input type="double" class="form-control" placeholder="Digite um valor" name="regiaoD"/>
+                                <input type="number" class="form-control" placeholder="Digite um valor" name="regiaoF"/>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="cargo"> Cargo: </label>
                             <div class="col-sm-10">
-                                
-                                <select id="cargoSelecionado" name="cargo" class="selectpicker form-control">
-                                    <?php
-                                        $cargos = listagemCargo();
-                                        foreach($cargos as $cargo) : ?>
-                                            <option value="<?=$cargo['id']?>"><?=$cargo['nome']?></option>
-                                        <?php endforeach; ?>
-                                </select>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" placeholder="Digite nome do cargo" name="nomeCargo"/>
+                                </div>
                             </div>
-                            
                         </div>
                         <div class="form-group">        
                           <div class="col-sm-offset-2 col-sm-10">
