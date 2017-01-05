@@ -37,7 +37,7 @@ require_once '../DAO/DAO.php';
                $resultado = $servidorDAO->alterarServidor($servidor);     
                
                if($resultado==TRUE){
-                   header("Location: ../alterar_servidores.php?resultado=sucesso");
+                   header("Location: ../alterar_servidores.php?resultado=sucesso&matricula=$matricula");
                }
                else{
                    header("Location: ../alterar_servidores.php?resultado=erro&matricula=$matricula");

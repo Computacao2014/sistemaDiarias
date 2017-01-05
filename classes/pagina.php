@@ -97,7 +97,7 @@ class Pagina {
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Diaria
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Solicitar</a></li>
+                    <li><a href="solicitacao_diarias.php">Solicitar</a></li>
                   </ul>
                 </li>
                 <li class="dropdown">
