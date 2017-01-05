@@ -15,9 +15,9 @@ class Cargo {
         $this->perfilDiaria = new PerfilDiaria();
     }
     
-    function __construct1($id,$nome,$perfil)
+    function __construct1($nome,$perfil)
     {
-        $this->id = $id;
+       
         $this->nome = $nome;
         $this->perfilDiaria = $perfil;
     }
@@ -37,7 +37,7 @@ class Cargo {
     }
     public function setNome($nome)
     {
-        $this->nome = nome;
+        $this->nome = $nome;
     }
     
     public function getPerfilDiaria()

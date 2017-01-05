@@ -5,8 +5,9 @@
  *
  * @author kenad
  */
-require_once('DAO/DAO.php');
-require_once('classes/Cargo.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
+require_once 'DAO.php';
+require_once "$root/classes/Cargo.php";
 
 class CargoDAO
 {
@@ -17,6 +18,7 @@ class CargoDAO
             $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
             $con = DAO::getConexao();
             $resultado = $con->query($query);
+            
             $con->close();
             return $resultado;
         } catch (Exception $ex) {

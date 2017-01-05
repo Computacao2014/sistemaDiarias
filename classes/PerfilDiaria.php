@@ -17,13 +17,21 @@ class PerfilDiaria {
     private $valor_regiao_c;
     private $valor_regiao_d;
     
-    public function __construct1()
+    public function __construct()
     {
         
     }
 
-    public function __construct($nome,$valorNoEstado,$valorForaEstado,$regiaoA,$regiaoB,$regiaoC,$regiaoD)
+    public function __construct1($nome,$valorNoEstado,$valorForaEstado,$regiaoA,$regiaoB,$regiaoC,$regiaoD)
     {
+        $this->setNome($nome);
+        $this->setValorNoEstado($valorNoEstado);
+        $this->setValorForaEstado($valorForaEstado);
+        $this->setValorRegiaoA($regiaoA);
+        $this->setValorRegiaoB($regiaoB);
+        $this->setValorRegiaoC($regiaoC);
+        $this->setValorRegiaoD($regiaoD);
+        
     }
 
     public function getId()
@@ -84,5 +92,13 @@ class PerfilDiaria {
     public function setValorRegiaoD($valor)
     {
         $this->valor_regiao_d=$valor;
+    }
+    public function getNome()
+    {
+        return $this->nome;
+    }
+    public function setNome($nome)
+    {
+        $this->nome=$nome;
     }
 }

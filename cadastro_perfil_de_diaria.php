@@ -22,11 +22,11 @@
                 <div class="col-sm-1"></div>
                 <div class="col-sm-10 formulario">
                     
-                    <form class="form-horizontal table" action = "controller/logica_solicitacao_diarias.php" method="post">
+                    <form class="form-horizontal table" action = "controller/logica_cadastrar_perfil_diaria.php" method="post">
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="Classe">Classe:</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" placeholder="Ex: Classe LD" name="classe"/>
+                                <input type="text" class="form-control" placeholder="Ex: Classe LD" name="classe"/>
                             </div>
                         </div>
                         
