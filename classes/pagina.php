@@ -64,7 +64,7 @@ class Pagina {
           <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
           <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
           <link rel="stylesheet" href="css/estilo.css">
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+          <script src="bootstrap/js/jQuery.min.js"></script>
           <script src="bootstrap/js/bootstrap.min.js"></script>
           <script src="js/funcoes.js"></script>
         <?php
@@ -104,6 +104,7 @@ class Pagina {
                   <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil Diaria<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="cadastro_perfil_de_diaria.php">Cadastrar</a></li>
+                    <li><a href="BuscarPerfilDiaria.php">Buscar Perfil</a></li>
                   </ul>
                 </li>
               </ul>
