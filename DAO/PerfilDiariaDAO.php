@@ -12,9 +12,9 @@ class PerfilDiariaDAO {
 
     function inserir(PerfilDiaria $perfil_diaria)
     {
-        echo ($perfil_diaria);
+        
         try {
-            $query = "insert into perfil_diaria(nome,valor_no_estado,valor_fora_estado,valor_regiao_a,valor_regiao_b,valor_regiao_c,valor_regiao_d) values('{$perfil_diaria->getNome()}','{$perfil_diaria->getValorNoEstado()}','{$perfil_diaria->getValorForaEstado()}','{$perfil_diaria->getValorRegiaoA()}','{$perfil_diaria->getValorRegiaoB()}','{$perfil_diaria->getValorRegiaoC()}','{$perfil_diaria->getValorRegiaoD()}')";
+            $query = "insert into perfil_diaria(nome,valor_no_estado,valor_fora_estado,valor_regiao_a,valor_regiao_b,valor_regiao_c,valor_regiao_d) values('{$perfil_diaria->getNome()}',{$perfil_diaria->getValorNoEstado()},{$perfil_diaria->getValorForaEstado()},{$perfil_diaria->getValorRegiaoA()},{$perfil_diaria->getValorRegiaoB()},{$perfil_diaria->getValorRegiaoC()},{$perfil_diaria->getValorRegiaoD()})";
 
             mysqli_query(DAO::getConexao(), $query);
            

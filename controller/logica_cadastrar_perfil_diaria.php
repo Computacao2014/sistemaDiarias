@@ -22,19 +22,17 @@ if($_POST)
     $regiaoD = $_POST['regiaoD'];
     $noEstado = $_POST['regiaoE'];
     $foraEstado = $_POST['regiaoF'];
-    $nomeCargo = $_POST['nomeCargo'];
-    
     
     try {
               
     $perfilDiaria = new PerfilDiaria();
     $perfilDiaria->setNome($classe);
-    $perfilDiaria->setValorRegiaoA($classe);
-    $perfilDiaria->setValorRegiaoB($classe);
-    $perfilDiaria->setValorRegiaoC($classe);
-    $perfilDiaria->setValorRegiaoD($classe);
-    $perfilDiaria->setValorNoEstado($classe);
-    $perfilDiaria->setValorForaEstado($classe);
+    $perfilDiaria->setValorRegiaoA($regiaoA);
+    $perfilDiaria->setValorRegiaoB($regiaoB);
+    $perfilDiaria->setValorRegiaoC($regiaoC);
+    $perfilDiaria->setValorRegiaoD($regiaoD);
+    $perfilDiaria->setValorNoEstado($noEstado);
+    $perfilDiaria->setValorForaEstado($foraEstado);
     
     $perfilDAO = new PerfilDiariaDAO();
     $perfilDAO->inserir($perfilDiaria);

@@ -50,7 +50,7 @@ class PerfilDiaria {
     }
     public function setValorNoEstado($valor)
     {
-        $this->valorNoEstado = $valor;
+        $this->valorNoEstado = (float)$valor;
     }
     
     public function getValorForaEstado()
@@ -59,7 +59,7 @@ class PerfilDiaria {
     }
     public function setValorForaEstado($valor)
     {
-        $this->valorForaEstado = $valor;
+        $this->valorForaEstado = (float)$valor;
     }
     public function getValorRegiaoA()
     {
@@ -67,7 +67,7 @@ class PerfilDiaria {
     }
     public function setValorRegiaoA($valor)
     {
-        $this->valor_regiao_a=$valor;
+        $this->valor_regiao_a=(float)$valor;
     }
     public function getValorRegiaoB()
     {
@@ -75,7 +75,7 @@ class PerfilDiaria {
     }
     public function setValorRegiaoB($valor)
     {
-        $this->valor_regiao_b=$valor;
+        $this->valor_regiao_b=(float)$valor;
     }
     public function getValorRegiaoC()
     {
@@ -83,7 +83,7 @@ class PerfilDiaria {
     }
     public function setValorRegiaoC($valor)
     {
-        $this->valor_regiao_c=$valor;
+        $this->valor_regiao_c=(float)$valor;
     }
     public function getValorRegiaoD()
     {
@@ -91,7 +91,7 @@ class PerfilDiaria {
     }
     public function setValorRegiaoD($valor)
     {
-        $this->valor_regiao_d=$valor;
+        $this->valor_regiao_d=(float)$valor;
     }
     public function getNome()
     {
