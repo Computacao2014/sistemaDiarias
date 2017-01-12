@@ -35,13 +35,7 @@ if($_POST)
     $perfilDiaria->setValorForaEstado($foraEstado);
     
     $perfilDAO = new PerfilDiariaDAO();
-    $perfilDAO->inserir($perfilDiaria);
-    $perfilDiaria= $perfilDAO->buscarPorNome($perfilDiaria->getNome());
-    $cargo = new Cargo();
-    $cargo->setNome($nomeCargo);
-    $cargo->setPerfilDiaria($perfilDiaria);
-    $cargoDAO = new CargoDAO();
-    $resultado=$cargoDAO->inserir($cargo);    
+    $resultado = $perfilDAO->inserir($perfilDiaria);
     
                if($resultado==TRUE){
                    header("Location: ../cadastro_perfil_de_diaria.php?resultado=sucesso");

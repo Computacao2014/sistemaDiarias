@@ -15,7 +15,7 @@ class CargoDAO
     function inserir(Cargo $cargo)
     {
         try {
-            $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}','{$cargo->getPerfilDiaria()->getId()}')";
+            $query = "insert into cargo(nome,id_perfil_diaria) values('{$cargo->getNome()}',{$cargo->getPerfilDiaria()})";
             $con = DAO::getConexao();
             $resultado = $con->query($query);
             

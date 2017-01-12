@@ -15,7 +15,7 @@
         }
     public function exibir_cadastro_perfil_diaria(){
         ?>
-        <h3 class="titulo">Cadastrar Perfil de Diaria</h3>
+        <h3 class="titulo">Cadastrar Perfil de Diária</h3>
         <?php
         if(filter_has_var(INPUT_GET, 'resultado')){
                 $resultado = filter_input(INPUT_GET, 'resultado');
@@ -78,12 +78,6 @@
                             </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="control-label col-sm-2" for="cargo"> Cargo: </label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" placeholder="Digite nome do cargo" name="nomeCargo"/>
-                            </div>
-                        </div>
                         <div class="form-group">        
                           <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-lg btn-primary btn-block botao">Cadastrar</button>

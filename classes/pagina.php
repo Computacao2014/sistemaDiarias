@@ -101,10 +101,10 @@ class Pagina {
                   </ul>
                 </li>
                 <li class="dropdown">
-                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfil Diaria<span class="caret"></span></a>
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Perfis Diárias & Cargos<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="cadastro_perfil_de_diaria.php">Cadastrar</a></li>
-                    <li><a href="BuscarPerfilDiaria.php">Buscar Perfil</a></li>
+                    <li><a href="cadastro_perfil_de_diaria.php">Cadastrar Perfil de Diárias</a></li>
+                    <li><a href="cadastro_cargo.php">Cadastrar Cargo</a></li>
                   </ul>
                 </li>
               </ul>
