@@ -85,5 +85,20 @@ class PerfilDiariaDAO {
         $con->close();
         return false;
     }
+    
+    public function deletarPerfil($id){
+        $query = "DELETE FROM `perfil_diaria` WHERE `id_perfil_diaria`= ?";
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $id);
+        if($stmt->execute()){
+            $stmt->close();
+            $con->close();
+            return $true;
+        }
+        $stmt->close();
+        $con->close();
+        return FALSE;
+    }
 }
 ?>

@@ -57,7 +57,7 @@ class Pagina {
         }
     }
 
-        private function exibir_config(){
+        public function exibir_config(){
         ?>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -105,6 +105,7 @@ class Pagina {
                   <ul class="dropdown-menu">
                     <li><a href="cadastro_perfil_de_diaria.php">Cadastrar Perfil de Diárias</a></li>
                     <li><a href="cadastro_cargo.php">Cadastrar Cargo</a></li>
+                    <li><a href="BuscarPerfilDiaria.php">Buscar Perfis</a></li>
                   </ul>
                 </li>
               </ul>
