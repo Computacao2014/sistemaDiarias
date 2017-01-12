@@ -4,7 +4,7 @@
  *
  */
 $root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
-require_once 'DAO.php';
+require_once "$root/DAO/DAO.php";
 require_once "$root/classes/PerfilDiaria.php";
 
 class PerfilDiariaDAO {
@@ -69,18 +69,21 @@ class PerfilDiariaDAO {
     }
     function listarTodos()
     {
-        $query = "select * from perfil_diaria";
-
-        $resultado = mysqli_query(DAO::getConexao(), $query);
-
-        $cargos = array();
-
-        while($perfil_diaria = mysqli_fetch_assoc($resultado))
-        {
-            array_push($perfil_diaria,$perfil_diaria);
+        $query = "select * from perfil_diaria WHERE ?";
+        $num = 1;
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $num);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            $con->close();
+            return $array;
         }
-
-        return $perfil_diaria;
+        $stmt->close();
+        $con->close();
+        return false;
     }
 }
 ?>
