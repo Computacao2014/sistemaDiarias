@@ -42,29 +42,19 @@ class PerfilDiariaDAO {
     }
     function buscarPorNome($classe)
     {
-        $query = "select * from perfil_diaria where nome = '{$classe}'";
+        $query = "select * from perfil_diaria where nome LIKE '%{$classe}%'";
 
-        $resultado = mysqli_query(DAO::getConexao(), $query);
-
-        $perfis_diarias = $resultado->fetch_all(MYSQLI_ASSOC);
-        
-        $perfil_diaria = new PerfilDiaria();
-        
-        if(count($perfis_diarias)==0){
-            return NULL;
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            $con->close();
+            return $array;
         }else{
-            $perfil_diaria->setId($perfis_diarias[0]['id_perfil_diaria']);
-            $perfil_diaria->setNome($perfis_diarias[0]['nome']);
-            $perfil_diaria->setValorForaEstado($perfis_diarias[0]['valor_fora_estado']);
-            $perfil_diaria->setValorNoEstado($perfis_diarias[0]['valor_no_estado']);
-            $perfil_diaria->setValorRegiaoA($perfis_diarias[0]['valor_regiao_a']);
-            $perfil_diaria->setValorRegiaoB($perfis_diarias[0]['valor_regiao_b']);
-            $perfil_diaria->setValorRegiaoC($perfis_diarias[0]['valor_regiao_c']);
-            $perfil_diaria->setValorRegiaoD($perfis_diarias[0]['valor_regiao_d']);
-            
-             return $perfil_diaria;
+            return false;
         }
-
        
     }
     function listarTodos()
@@ -94,7 +84,7 @@ class PerfilDiariaDAO {
         if($stmt->execute()){
             $stmt->close();
             $con->close();
-            return $true;
+            return true;
         }
         $stmt->close();
         $con->close();

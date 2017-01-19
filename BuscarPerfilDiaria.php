@@ -8,13 +8,30 @@ class BuscarPerfilDiaria extends Pagina{
         parent::exibir_body();
         ?>
 <div class="container">
+    
+    
+    <form class="formulario" id="formPerquisarClasse">
+            <div class="row">
+                <h2>Buscar Perfis</h2>
+                <div class="col-sm-12">
+                    <label>Procurar classe</label>
+                    <input type="text" class="form-control" id="nome_classe">
+                </div>
+                <br>
+                <div>
+                    <input type="button" value="Buscar Classes" class="btn btn-success btn-block" id="botao_pesquisar_classe">
+                </div>
+            </div>
+        </form>
+    
+    
     <div class="row">
         <div class="col-sm-12">
             <h1 class="text-center">Listar os perfis de diárias</h1>
-            <table class="table tabela table-striped table-bordered">
+            <table class="table tabela table-striped table-bordered" id="tabelaPerfilDiaria">
                 <thead>
                     <tr>
-                        <td><strong>ID Perfil</strong></td>
+                        <td><strong class="id_classe">ID Perfil</strong></td>
                         <td><strong>Nome/Classe</strong></td>
                         <td><strong>Valor No estado</strong></td>
                         <td><strong>Fora do estado</strong></td>
@@ -59,7 +76,9 @@ class BuscarPerfilDiaria extends Pagina{
         ?>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".botao_apagar").on("click", function(){
+        ocultarIdClasse();
+        
+        $("#tabelaPerfilDiaria").on("click", ".botao_apagar", function(){
             $.ajax({
                 type:"POST",
                 url:"controller/logica_deletar_perfil_diaria.php",
@@ -68,6 +87,7 @@ class BuscarPerfilDiaria extends Pagina{
                 },
                 success: function(resposta){
                     alert(resposta);
+                    location.reload();
                 }
             });
             
@@ -77,10 +97,30 @@ class BuscarPerfilDiaria extends Pagina{
             alert("Botao Editar");
         });
         
+        $("#formPerquisarClasse").on("click", "#botao_pesquisar_classe", function(){
+            var nome = $("#nome_classe").val();
+            $.ajax({
+                type:"POST",
+                url:"controller/perfil_diaria/getPerfilByNome.php",
+                data:{
+                    nome_classe: nome
+                },
+                success: function(resposta){
+                    $("#tabelaPerfilDiaria").find("tbody").empty();
+                    $("#tabelaPerfilDiaria").find("tbody").append(resposta);
+                    ocultarIdClasse();
+                }
+            });
+        });
+        
+        function ocultarIdClasse(){
+            $(".id_classe").parent().hide();
+        }
     });
 </script>
         <?php
     }
+    
     
 }
 
