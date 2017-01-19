@@ -18,29 +18,7 @@
         }
         public function exibir_form_solicitacao_diarias(){
             
-            ?>
-              <?php  
-                 
-                 $codigo_banco;
-                 $banco;
-                 $codigo_agencia;
-                 //
-                 $nome_evento;
-                 $local_evento;
-                 $periodo_evento;
-                 $abrangencia_evento; //internacional, nacional; regional;
-                 $titulo_trabalho;
-                 $titulo_projeto_cadastrado_prop;
-                 $check_auxilio; //checkbox para sim ou nao, se sim, textfield para quantANos
-                 $justificativa;
-                 $tipo_auxilio; //checkbox para passagem, diarias, ajuda financeira, e textfiel para descricao
-                 $pontuacao;
-                 $importancia;
-                 
-                    
-              ?>
-            
-                
+            ?>                
             <div class="container">
                 
                 <div class="col-sm-1"></div>
@@ -50,10 +28,24 @@
                        <div class="panel panel-primary">
                             <div class="panel-heading">Dados da viagem</div>
                             <div class="panel-body">
-                                quantidade
-                                data de partida
-                                data de chegada
-                                
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label col-sm-4" for="quantidade_de_dias">Quantidade de dias:</label>
+                                    <div class="col-sm-7">          
+                                        <input type="text" required="required" class="form-control" name="quantidade_de_dias" placeholder="Digite o Nome do Evento">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label col-sm-3" for="data_de_partida">Data de partida:</label>
+                                    <div class="col-sm-9">          
+                                        <input type="text" required="required" class="form-control" name="data_de_partida">
+                                    </div>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="control-label col-sm-3" for="data_de_chegada">Data de chegada:</label>
+                                    <div class="col-sm-9">          
+                                        <input type="text" required="required" class="form-control" name="data_de_chegada" >
+                                    </div>
+                                </div>
                             </div>
                        </div>
                         
@@ -67,9 +59,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" for="local_evento">Local do Evento:</label>
+                                    <label class="control-label col-sm-2" for="local_evento">Data de partida:</label>
                                     <div class="col-sm-10">          
-                                        <input type="text" required="required" class="form-control" name="local_evento" placeholder="Digite o Local do Evento">
+                                        <input type="date" required="required" class="form-control" name="local_evento" placeholder="Digite o Local do Evento">
                                     </div>
                                 </div>
                                 
