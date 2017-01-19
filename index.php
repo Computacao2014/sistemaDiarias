@@ -48,10 +48,15 @@
                                 }
                                 ?>
                                 
-                                
+                               
                                 
                                 <input type="submit" class="btn btn-lg btn-primary btn-block botao" value="Entrar">
-                                <input class="btn btn-lg btn-danger btn-block botao" value="Recuperar senha">
+                                <div class="form-group">        
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <a href="esqueceuasenha.php" target='_blank' >Recuperar Senha</a>
+                                    </div>
+                                </div>
+                               
                             </form>
                         </div>
                     </div>
