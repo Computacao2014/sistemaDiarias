@@ -1,6 +1,11 @@
 <?php
     require_once("Servidor.php");
     require_once("Relatorio.php");
+    require_once("Viagem.php");
+    require_once("Evento.php");
+    require_once("Trabalho.php");
+    require_once("Auxilios.php");
+    require_once("Producoes.php");
 /**
  * Description of Diaria
  *
@@ -9,72 +14,67 @@
 class Diaria
 {
     private $id;
-    private $quantDiarias;
-    private $objetivo;
-    private $servidor;
-    private $relatorio;
-    private $trajeto;
-    private $projeto;
-    private $modalidade;
-
-    public function getId()
-    {
-        return $this->id;
+    
+    private $viagem;
+    private $evento;
+    private $trabalho;
+    private $auxilio;
+    private $producoes;
+    
+    public function Diaria(){
+        $this->viagem = new Viagem();
+        $this->evento = new Evento();
+        $this->trabalho = new Trabalho();
+        $this->auxilio = new Auxilios();
+        $this->producoes = new Producoes();
     }
+
     public function setId($id)
     {
         $this->id = $id;
     }
-    public function getQuantidadeDiarias()
+    public function getId()
     {
-        return $this->quantDiarias;
+        return $this->id;
     }
-    public function setQuantidadeDiarias($quantidade)
+    public function setViagem($viagem)
     {
-        $this->quantDiarias = $quantidade;
+        $this->viagem = $viagem;
     }
-    public function getObjetivo()
+    public function getViagem()
     {
-        return $this->objetivo;
+        return $this->viagem;
     }
-    public function getServidor()
+    public function setEvento($evento)
     {
-        return $this->servidor;
+        $this->evento = $evento;
     }
-    public function setServidor($servidor)
+    public function getEvento()
     {
-        $this->servidor=$servidor;
+        return $this->evento;
     }
-    public function getRelatorio()
+    public function setTrabalho($trabalho)
     {
-        return $this->relatorio;
+        $this->trabalho = $trabalho;
     }
-    public function setRelatorio($relatorio)
+    public function getTrabalho()
     {
-        $this->relatorio = $relatorio;
+        return $this->trabalho;
     }
-    public function getProjeto()
+    public function setAuxilio($auxilio)
     {
-        return $this->$projeto;
+        $this->auxilio = $auxilio;
     }
-    public function setProjeto($projeto)
+    public function getAuxilio()
     {
-        $this->projeto = $projeto;
+        return $this->auxilio;
     }
-     public function getTrajeto()
+    public function setProducoes($producoes)
     {
-        return $this->$trajeto;
+        $this->producoes = $producoes;
     }
-    public function setTrajeto($trajeto)
+    public function getProducoes()
     {
-        $this->trajeto = $trajeto;
-    }
-     public function getModalidade()
-    {
-        return $this->$modalidade;
-    }
-    public function setModalidade($modalidade)
-    {
-        $this->modalidade = $modalidade;
+        return $this->producoes;
     }
 }
