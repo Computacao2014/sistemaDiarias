@@ -23,7 +23,7 @@ class BuscarPerfilDiaria extends Pagina{
                 </div>
             </div>
         </form>
-    
+        
     
     <div class="row">
         <div class="col-sm-12">

@@ -16,6 +16,22 @@
             
             $this->exibir_form_solicitacao_diarias();
         }
+        
+        public function exibir_config() {
+            parent::exibir_config();
+            ?>
+                <script type="text/javascript">
+                $("#ida").change(function ()) && $("#volta").change(function ()){
+                    return ($("#ida").val() - $("#volta").val());
+            
+                }
+                </script>
+                
+                
+            <?php
+        }
+
+
         public function exibir_form_solicitacao_diarias(){
             
             ?>                
@@ -31,19 +47,19 @@
                                 <div class="form-group col-sm-4">
                                     <label class="control-label col-sm-4" for="quantidade_de_dias">Quantidade de dias:</label>
                                     <div class="col-sm-7">          
-                                        <input type="text" required="required" class="form-control" name="quantidade_de_dias" placeholder="Digite o Nome do Evento">
+                                        <label> </label>
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label class="control-label col-sm-3" for="data_de_partida">Data de partida:</label>
                                     <div class="col-sm-9">          
-                                        <input type="text" required="required" class="form-control" name="data_de_partida">
+                                        <input type="date" required="required" class="form-control" name="data_de_partida" id="ida">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label class="control-label col-sm-3" for="data_de_chegada">Data de chegada:</label>
                                     <div class="col-sm-9">          
-                                        <input type="text" required="required" class="form-control" name="data_de_chegada" >
+                                        <input type="date" required="required" class="form-control" name="data_de_chegada" id="volta">
                                     </div>
                                 </div>
                             </div>
@@ -59,9 +75,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-sm-2" for="local_evento">Data de partida:</label>
+                                    <label class="control-label col-sm-2" for="local_evento">Local do Evento:</label>
                                     <div class="col-sm-10">          
-                                        <input type="date" required="required" class="form-control" name="local_evento" placeholder="Digite o Local do Evento">
+                                        <input type="text" required="required" class="form-control" name="local_evento" placeholder="Digite o Local do Evento">
                                     </div>
                                 </div>
                                 
@@ -144,7 +160,7 @@
                             </div>
                         </div>
                         <div class="panel panel-primary">
-                            <div class="panel-heading">Dados das Produções Aadêmicas</div>
+                            <div class="panel-heading">Dados das Produções Acadêmicas</div>
                             <div class="panel-body">
                                 <div class="form-group">
                                   <label class="control-label col-sm-2" for="pontuacao">Pontuação de Produção Científica nos Ultimos 5 Anos:</label>
