@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <table name = "cargo">
+        <column>id</column>
+        <column>nome</column>
+        <column>id_perfil_diria</column>
+        <row>1</row>
+        <row>SECRETARIO</row>
+        <row>1</row>
+        <row>2</row>
+        <row>DIRETOR</row>
+        <row>2</row>
+        <row>3</row>
+        <row>PROFESSOR</row>
+        <row>1</row>
+    </table>
+        <column>id_perfil_daria</column>
+        <column>nome</column>
+        <column>valor_no_estado</column>
+        <column>valor_fora_estado</column>
+        <column>valor_regiao_a</column>
+        <column>valor_regiao_b</column>
+        <column>valor_regiao_c</column>
+        <column>valor_regiao_d</column>
+        <row>1</row>
+        <row>CLASSE 1</row>
+        <row>120.12</row>
+        <row>90.5</row>
+        <row>120.5</row>
+        <row>350</row>
+        <row>89.90</row>
+        <row>265</row>
+        
+        <row>1</row>
+        <row>CLASSE 1</row>
+        <row>145.5</row>
+        <row>555</row>
+        <row>100</row>
+        <row>650</row>
+        <row>143.7</row>
+        <row>389.9</row>
+        
+        <row>1</row>
+        <row>CLASSE 1</row>
+        <row>582.5</row>
+        <row>123</row>
+        <row>845.5</row>
+        <row>300</row>
+        <row>426</row>
+        <row>478</row>
+</dataset>

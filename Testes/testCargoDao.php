@@ -7,9 +7,19 @@ require_once "$root/DAO/CargoDAO.php";
 require_once "$root/classes/Cargo.php";
 require_once "$root/classes/PerfilDiaria.php";
 
-class CargoDaoTest extends PHPUnit_Framework_TestCase
+class CargoDaoTest extends PHPUnit_Extensions_Database_TestCase
 {
-    
+    private $conn = null;
+    public function getConnection()
+    {
+        if(!$this->conn)
+        {
+            $this->conn = DAO::getConexao();
+        }
+        return $this->conn;
+    }
+
+
     public function testInserirCargos()
     {
         $cargoDAO = new CargoDAO();
