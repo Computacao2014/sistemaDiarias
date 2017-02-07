@@ -28,4 +28,19 @@ class ViagemDAO {
             return false;
         }
     }
+    function buscarPorId($id)
+    {
+        $query = "select * from viagem where id = '{$id}'";
+
+        $resultado = mysqli_query($conexao, $query);
+
+        $result = array();
+
+        while($result = mysqli_fetch_assoc($resultado))
+        {
+            array_push($results,$result);
+        }
+
+        return $result;
+    }
 }

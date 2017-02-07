@@ -12,11 +12,11 @@ class DiariaDAO {
         try{
             $AuxiliosDAO = new AuxiliosDAO($this->conexao);
             $AuxiliosDAO->inserir($diaria->getAuxilio());
-            $diaria->setAuxilio($AuxiliosDAO->buscarPor???($diaria->get()));
-            
+            $diaria->setAuxilio($AuxiliosDAO->buscarPorTudo($diaria->getAuxilio()->getJa_recebeu_auxilio(), $diaria->getAuxilio()->getQuantidade_de_anos(), $diaria->getAuxilio()->getTipo_auxilio_solicitado(), $diaria->getAuxilio()->getServidor());
+
             $ViagemDAO = new ViagemDAO($this->conexao);
             $ViagemDAO->inserir($diaria->getViagem());
-            $diaria->setViagem($ViagemDAO->buscarPor???($diaria->get()));
+            $diaria->setViagem($ViagemDAO->buscarPorId($diaria->getId()));
 
             $TrabalhoDAO = new TrabalhoDAO($this->conexao);
             $TrabalhoDAO->inserir($diaria->getTrabalho());

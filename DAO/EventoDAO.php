@@ -18,7 +18,7 @@ class EventoDAO {
     function inserir(Evento $var_evento)
     {
         try {
-            $query = "insert into var_evento($nome_evento,$local_evento,$periodo_evento,$abrangencia_evento) values('{$var_evento->getNome_Evento()}','{$var_evento->getLocal_Evento()}','{$var_evento->getPeriodo_Evento()}','{$var_evento->getAbrangencia()}')";
+            $query = "insert into var_evento(nome,local,data_inicial,data_final,abrangencia) values('{$var_evento->getNome_Evento()}','{$var_evento->getLocal_Evento()}','{$var_evento->getPeriodo_Evento()}','{$var_evento->getAbrangencia()}')";
 
             mysqli_query($conexao, $query);
             

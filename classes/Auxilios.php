@@ -1,6 +1,7 @@
 <?php
     require_once("Cargo.php");
     require_once("Diaria.php");
+    require_once("Servidor.php");
 /**
  * Description of Servidor
  *
@@ -38,5 +39,13 @@ class Auxilios
     public function getTipo_auxilio_solicitado()
     {
         return $this->tipo_auxilio_solicitado;
+    }
+    public function setServidor(Servidor $servidor)
+    {
+        $this->servidor = $servidor;
+    }
+    public function getServidor()
+    {
+        return $this->servidor;
     }
 }

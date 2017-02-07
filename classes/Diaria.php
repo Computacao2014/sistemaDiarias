@@ -61,7 +61,7 @@ class Diaria
     {
         return $this->trabalho;
     }
-    public function setAuxilio($auxilio)
+    public function setAuxilio(Auxilios $auxilio)
     {
         $this->auxilio = $auxilio;
     }
