@@ -28,7 +28,7 @@ if($_POST){
         $servidorDAO = new ServidorDAO($dao->getConexao());
         
         $servidor = new Servidor();
-        $banco_obj = new Banco();
+        $banco_obj = new conta_bancaria();
         $evento_obj = new Evento();
         
         

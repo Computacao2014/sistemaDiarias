@@ -3,18 +3,11 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO/DAO.php');
-require_once('class/Producoes.php');
+require_once('DAO.php');
+require_once('../class/Producoes.php');
 
 class ProducoesDAO {
-    //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(Producoes $var)
     {
         try {
@@ -25,6 +18,23 @@ class ProducoesDAO {
             return true;
         } catch (Exception $ex) {
             echo $ex->getMessage();
+            return false;
+        }
+    }
+    function buscarPorId($id)
+    {
+        $query = "select * from producoes_academicas where id_producao=?";
+
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $id);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_assoc();
+            $stmt->close();
+            $con->close();
+            return $array;
+        }else{
             return false;
         }
     }

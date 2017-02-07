@@ -3,18 +3,11 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO/DAO.php');
-require_once('class/Viagem.php');
+require_once('DAO.php');
+require_once('../class/Viagem.php');
 
 class ViagemDAO {
-    //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(Viagem $var)
     {
         try {
@@ -30,17 +23,19 @@ class ViagemDAO {
     }
     function buscarPorId($id)
     {
-        $query = "select * from viagem where id = '{$id}'";
+        $query = "select * from viagem where id_viagem=?";
 
-        $resultado = mysqli_query($conexao, $query);
-
-        $result = array();
-
-        while($result = mysqli_fetch_assoc($resultado))
-        {
-            array_push($results,$result);
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $id);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_assoc();
+            $stmt->close();
+            $con->close();
+            return $array;
+        }else{
+            return false;
         }
-
-        return $result;
     }
 }

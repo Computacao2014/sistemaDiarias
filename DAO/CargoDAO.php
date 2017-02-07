@@ -1,10 +1,6 @@
 <?php
 
-/**
- * Description of ClasseDAO
- *
- * @author kenad
- */
+
 $root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
 require_once 'DAO.php';
 require_once "$root/classes/Cargo.php";

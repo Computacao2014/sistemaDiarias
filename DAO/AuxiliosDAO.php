@@ -3,22 +3,17 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO/DAO.php');
-require_once('class/Auxilios.php');
+require_once('DAO.php');
+require_once('../class/Auxilios.php');
 
 class AuxiliosDAO {
     //put your code here
 
-    private $conexao;
 
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(Auxilios $var)
     {
         try {
-            $query = "insert into var(auxilio_anterior,anos,tipo_auxilio) values('{$var->getJa_recebeu_auxilio()}','{$var->getQuantidade_de_anos()}','{$var->getTipo_auxilio_solicitado()}')";
+            $query = "insert into historico_auxilio(auxilio_anterior,anos,tipo_auxilio) values('{$var->getJa_recebeu_auxilio()}','{$var->getQuantidade_de_anos()}','{$var->getTipo_auxilio_solicitado()}')";
 
             mysqli_query($conexao, $query);
             

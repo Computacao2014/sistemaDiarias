@@ -4,10 +4,20 @@
 
 class Viagem
 {
+    private $id;
     private $quantidade_de_dias;
     private $data_de_partida;
     private $data_de_chegada;
     
+    
+    public function setId($id)
+    {
+        return $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
     public function setQuantidade_de_dias($quantidade_de_dias)
     {
         $this->quantidade_de_dias = $quantidade_de_dias;

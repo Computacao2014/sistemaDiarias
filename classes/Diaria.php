@@ -6,6 +6,7 @@
     require_once("Trabalho.php");
     require_once("Auxilios.php");
     require_once("Producoes.php");
+    require_once("Servidor.php");
 /**
  * Description of Diaria
  *
@@ -14,7 +15,7 @@
 class Diaria
 {
     private $id;
-    
+    private $servidor;
     private $viagem;
     private $evento;
     private $trabalho;
@@ -27,6 +28,7 @@ class Diaria
         $this->trabalho = new Trabalho();
         $this->auxilio = new Auxilios();
         $this->producoes = new Producoes();
+        $this->servidor = new Servidor();
     }
 
     public function setId($id)
@@ -36,6 +38,14 @@ class Diaria
     public function getId()
     {
         return $this->id;
+    }
+    public function setServidor($servidor)
+    {
+        $this->servidor = $servidor;
+    }
+    public function getServidor()
+    {
+        return $this->servidor;
     }
     public function setViagem($viagem)
     {

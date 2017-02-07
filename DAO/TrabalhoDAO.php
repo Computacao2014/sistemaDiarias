@@ -3,18 +3,11 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO/DAO.php');
-require_once('class/Trabalho.php');
+require_once('DAO.php');
+require_once('../class/Trabalho.php');
 
 class TrabalhoDAO {
-    //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(Trabalho $var)
     {
         try {

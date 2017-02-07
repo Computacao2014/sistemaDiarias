@@ -9,11 +9,20 @@
  */
 class Auxilios
 {
+    private $id;
     private $ja_recebeu_auxilio;
     private $quantidade_de_anos;
     private $tipo_auxilio_solicitado;
     private $servidor;
     
+    public function setId($id)
+    {
+        return $this->id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }    
     public function setJa_recebeu_auxilio($ja_recebeu_auxilio)
     {
         $this->ja_recebeu_auxilio = $ja_recebeu_auxilio;

@@ -1,26 +1,18 @@
-<?php
-/**
- * Description of ClasseDAO
- *
- */
-require_once('DAO/DAO.php');
-require_once('class/Banco.php');
+ <?php
+
+require_once('DAO.php');
+require_once('../classes/conta_bancaria.php');
 
 class BancoDAO {
     //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
-    function inserir(Banco $var_banco)
+    
+    function inserir(conta_bancaria $var_banco)
     {
         try {
-            $query = "insert into var_banco(codigo_agencia,codigo_banco,banco) values('{$var_banco->getCodigo_Agencia()}','{$var_banco->getCodigo_Banco()}','{$var_banco->getBanco()}')";
-
-            mysqli_query($conexao, $query);
+            $query = "insert into conta_bancaria(agencia,conta,banco) values('{$var_banco->getAgencia()}','{$var_banco->getConta()}','{$var_banco->getBanco()}')";
+            $con = DAO::getConexao();
+            mysqli_query($con, $query);
             
             return true;
         } catch (Exception $ex) {
@@ -28,36 +20,43 @@ class BancoDAO {
             return false;
         }
     }
-    function buscarPorId($id)
+    function buscarPorId($conta)
     {
-        $query = "select * from var_banco where id = '{$id}'";
+        $query = "select * from conta_bancaria where conta=?";
 
-        $resultado = mysqli_query($conexao, $query);
-
-        $var_banco = array();
-
-        while($per = mysqli_fetch_assoc($resultado))
-        {
-            array_push($var_banco,$var_banco);
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $conta);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_assoc();
+            $stmt->close();
+            $con->close();
+            return $array;
+        }else{
+            return false;
         }
-
-        return $var_banco;
     }
    
     function listarTodos()
     {
-        $query = "select * from var_banco";
-
-        $resultado = mysqli_query($conexao, $query);
-
-        $cargos = array();
-
-        while($var_banco = mysqli_fetch_assoc($resultado))
-        {
-            array_push($var_banco,$var_banco);
+        $query = "select * from conta_bancaria WHERE ?";
+        $num = 1;
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $num);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            $con->close();
+            return $array;
         }
-
-        return $var_banco;
+        $stmt->close();
+        $con->close();
+        return false;
     }
 }
-?>
+/*
+$ban = new BancoDAO();
+var_dump($ban->buscarPorId("51382-X"));*/

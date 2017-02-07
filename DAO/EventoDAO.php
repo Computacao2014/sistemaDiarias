@@ -3,22 +3,15 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO/DAO.php');
-require_once('class/Evento.php');
+require_once('DAO.php');
+require_once('../class/Evento.php');
 
 class EventoDAO {
-    //put your code here
 
-    private $conexao;
-
-    function __construct($conexao)
-    {
-        $this->conexao = $conexao;
-    }
     function inserir(Evento $var_evento)
     {
         try {
-            $query = "insert into var_evento(nome,local,data_inicial,data_final,abrangencia) values('{$var_evento->getNome_Evento()}','{$var_evento->getLocal_Evento()}','{$var_evento->getPeriodo_Evento()}','{$var_evento->getAbrangencia()}')";
+            $query = "insert into evento(nome,local,data_inicial,data_final,abrangencia) values('{$var_evento->getNome_Evento()}','{$var_evento->getLocal_Evento()}','{$var_evento->getPeriodo_Evento()}','{$var_evento->getAbrangencia()}')";
 
             mysqli_query($conexao, $query);
             
@@ -30,34 +23,39 @@ class EventoDAO {
     }
     function buscarPorId($id)
     {
-        $query = "select * from var_evento where id = '{$id}'";
+        $query = "select * from evento where id_evento=?";
 
-        $resultado = mysqli_query($conexao, $query);
-
-        $var_evento = array();
-
-        while($per = mysqli_fetch_assoc($resultado))
-        {
-            array_push($var_evento,$var_evento);
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $id);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_assoc();
+            $stmt->close();
+            $con->close();
+            return $array;
+        }else{
+            return false;
         }
-
-        return $var_evento;
     }
    
     function listarTodos()
     {
-        $query = "select * from var_evento";
-
-        $resultado = mysqli_query($conexao, $query);
-
-        $cargos = array();
-
-        while($var_banco = mysqli_fetch_assoc($resultado))
-        {
-            array_push($var_evento,$var_evento);
+        $query = "select * from evento WHERE ?";
+        $num = 1;
+        $con = DAO::getConexao();
+        $stmt = $con->prepare($query);
+        $stmt->bind_param("i", $num);
+        if($stmt->execute()){
+            $resultado = $stmt->get_result();
+            $array = $resultado->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            $con->close();
+            return $array;
         }
-
-        return $var_evento;
+        $stmt->close();
+        $con->close();
+        return false;
     }
 }
 ?>

@@ -6,32 +6,42 @@ require_once 'classes/Trabalho.php';
 require_once 'classes/Producoes.php';
 require_once 'classes/Evento.php';
 
+require_once 'ViagemDAO.php';
+require_once 'AuxiliosDAO.php';
+require_once 'TrabalhoDAO.php';
+require_once 'ProducoesDAO.php';
+require_once 'EventoDAO.php';
+
 class DiariaDAO {
     public function inserir(Diaria $diaria)
     {
         try{
             $AuxiliosDAO = new AuxiliosDAO($this->conexao);
             $AuxiliosDAO->inserir($diaria->getAuxilio());
-            Auxilios:: $auxilio = $AuxiliosDAO->buscarPorTudo($diaria->getAuxilio()->getJa_recebeu_auxilio(), $diaria->getAuxilio()->getQuantidade_de_anos(), $diaria->getAuxilio()->getTipo_auxilio_solicitado(), $diaria->getAuxilio()->getServidor());
+            $auxilio = $AuxiliosDAO->buscarPorTudo($diaria->getAuxilio()->getJa_recebeu_auxilio(), $diaria->getAuxilio()->getQuantidade_de_anos(), $diaria->getAuxilio()->getTipo_auxilio_solicitado(), $diaria->getAuxilio()->getServidor());
             $diaria->setAuxilio($auxilio);
 
             $ViagemDAO = new ViagemDAO($this->conexao);
             $ViagemDAO->inserir($diaria->getViagem());
-            $diaria->setViagem($ViagemDAO->buscarPorId($diaria->getId()));
+            $viagem = $ViagemDAO->buscarPorId($diaria->getViagem()->getId());
+            $diaria->setViagem($viagem);
 
             $TrabalhoDAO = new TrabalhoDAO($this->conexao);
             $TrabalhoDAO->inserir($diaria->getTrabalho());
-            $diaria->setTrabalho($TrabalhoDAO->buscarPorNome($diaria->get()));
+            $trabalho = $TrabalhoDAO->buscarPorNome($diaria->getTrabalho()->getTitulo_do_trabalho_cadastrado_na_prop());
+            $diaria->setTrabalho($trabalho);
             
             $ProducoesDAO = new ProducoesDAO($this->conexao);
             $ProducoesDAO->inserir($diaria->getProducoes());
-            //$diaria->setProducoes($ProducoesDAO->buscarPor???($diaria->get()));
+            $producoes = $ProducoesDAO->buscarPorId($diaria->getProducoes()->getServidor());
+            $diaria->setProducoes($producoes);
             
             $EventoDAO = new EventoDAO($this->conexao);
             $EventoDAO->inserir($diaria->getEvento());
-            $diaria->setEvento($EventoDAO->buscarPor???($diaria->get()));
+            $evento = $EventoDAO->buscarPorId($diaria->getEvento()->getServidor());
+            $diaria->setEvento($evento);
 
-            $query = "insert into diaria_viagem(quant_dias,objeto_viagem,data_inicial,data_final,relato,id_projeto,id_trajeto,id_modalidade,id_servidor) values('{$diaria->getQuantidadeDiarias()}','{$diaria->getObjetivo()}','{}')";
+            $query = "insert into diaria(id_viagem,id_evento,id_trabalho,id_historico,id_producao,id_perfil_diaria,id_usuario) values ({$diaria->getViagem()->getId()},{$diaria->getEvento()->getId()},{$diaria->getTrabalho()->getId()},{$diaria->getAuxilio()->getId()},{$diaria->getProducoes()->getId()},{$diaria->getServidor()->getCargo()->getPerfilDiaria()->getId()},{$diaria->getServidor()->getId()})";
 
             mysqli_query($conexao, $query);
         
