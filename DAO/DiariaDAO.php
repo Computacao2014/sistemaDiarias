@@ -1,37 +1,34 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of DiariaDAO
- *
- * @author root
- */
-require_once 'classes/Projeto.php';
-require_once 'classes/Trajeto.php';
-require_once 'classes/Relatorio.php';
-require_once 'classes/ModalidadeTransporte.php';
-require_once 'classes/Servidor.php';
+require_once 'classes/Viagem.php';
+require_once 'classes/Auxilios.php';
+require_once 'classes/Trabalho.php';
+require_once 'classes/Producoes.php';
+require_once 'classes/Evento.php';
 
 class DiariaDAO {
     public function inserir(Diaria $diaria)
     {
         try{
-            $projetoDAO = new ProjetoDAO($this->conexao);
-            $projetoDAO->inserir($diaria->getProjeto());
-            $diaria->setProjeto($projetoDAO->buscarPorNome($diaria->getNome()));
+            $AuxiliosDAO = new AuxiliosDAO($this->conexao);
+            $AuxiliosDAO->inserir($diaria->getAuxilio());
+            $diaria->setAuxilio($AuxiliosDAO->buscarPor???($diaria->get()));
+            
+            $ViagemDAO = new ViagemDAO($this->conexao);
+            $ViagemDAO->inserir($diaria->getViagem());
+            $diaria->setViagem($ViagemDAO->buscarPor???($diaria->get()));
 
-            $trajetoDAO = new TrajetoDAO($this->conexao);
-            $trajetoDAO->inserir($diaria->getTrajeto());
-            $diaria->setTrajeto($trajetoDAO->buscarPorEnderecos($diaria->getTrajeto()->getSaida(), $diaria->getTrajeto()->getChegada()));
-
-            $modalidadeDAO = new ModalidadeTransporteDAO($this->conexao);
-            $modalidadeDAO->inserir($diaria->getModalidade());
-            $diaria->setModalidade($modalidadeDAO->buscarPorNome($diaria->getModalidade()->getNome()));
+            $TrabalhoDAO = new TrabalhoDAO($this->conexao);
+            $TrabalhoDAO->inserir($diaria->getTrabalho());
+            $diaria->setTrabalho($TrabalhoDAO->buscarPorNome($diaria->get()));
+            
+            $ProducoesDAO = new ProducoesDAO($this->conexao);
+            $ProducoesDAO->inserir($diaria->getProducoes());
+            $diaria->setProducoes($ProducoesDAO->buscarPor???($diaria->get()));
+            
+            $EventoDAO = new EventoDAO($this->conexao);
+            $EventoDAO->inserir($diaria->getEvento());
+            $diaria->setEvento($EventoDAO->buscarPor???($diaria->get()));
 
             $query = "insert into diaria_viagem(quant_dias,objeto_viagem,data_inicial,data_final,relato,id_projeto,id_trajeto,id_modalidade,id_servidor) values('{$diaria->getQuantidadeDiarias()}','{$diaria->getObjetivo()}','{}')";
 
