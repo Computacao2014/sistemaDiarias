@@ -18,7 +18,10 @@ class CargoDaoTest extends PHPUnit_Extensions_Database_TestCase
         }
         return $this->conn;
     }
-
+    public function getDataSet()
+    {
+        return $this->createXMLDataSet("Testes/cargos.xml");
+    }
 
     public function testInserirCargos()
     {

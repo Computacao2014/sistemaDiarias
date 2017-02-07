@@ -7,6 +7,9 @@
  */
 require_once 'classes/pagina.php';
 require_once 'DAO/DiariaDAO.php';
+require_once 'DAO/EventoDAO.php';
+require_once 'classes/Evento.php';
+require_once 'classes/Trabalho.php';
 
 class PaginaPrincipal extends Pagina
 {   
@@ -31,24 +34,24 @@ class PaginaPrincipal extends Pagina
                 
         <?php
             $diariaDAO = new DiariaDAO();
-            $dados = NULL; //ALTERAR AQUI
+            $dados = $diariaDAO->listarTodos(); //ALTERAR AQUI
             if($dados !=NULL)
             {
                 foreach ($dados as $dado)
                 {
-                    $servidor = (object)$dado;
+                    $eventoDAO = new EventoDAO();
+                    $evento = $eventoDAO->buscarPorId($dado->getEvento());
+                    $dado->setEvento($evento);
+                    
+                    $viagemDao = new ViagemDAO();
+                    $viagem = $viagemDao->buscarPorId($dado->getViagem());
+                    $dado->setViagem($viagem);
                     ?>
                     <tr>
                         <td id = "nomeEvento"></td>
                         <td id = "quantidade"></td>
                         <td id = "dataInicio"></td>
                         <td id = "dataFim"></td>
-                        <td>
-                            <form action="alterar_servidores.php" method="post" >
-                                <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />
-                                <button class="btn btn-warning">alterar</button>
-                            </form>
-                        </td>
                         <td>
                             <form action="controller/remover_servidor.php?id=<?=$servidor->matricula?>" method="post">
                                 <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />

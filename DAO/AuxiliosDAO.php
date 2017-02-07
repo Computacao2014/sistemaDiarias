@@ -3,8 +3,8 @@
  * Description of ClasseDAO
  *
  */
-require_once('DAO.php');
-require_once('../class/Auxilios.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
+require_once "$root/classes/Auxilios.php";
 
 class AuxiliosDAO {
     //put your code here
