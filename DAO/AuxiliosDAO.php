@@ -35,9 +35,13 @@ class AuxiliosDAO {
         $resultado = mysqli_query($conexao, $query);
 
         $auxilios = array();
+        $auxTemp =  new Auxilios();
 
         while($auxilio = mysqli_fetch_assoc($resultado))
         {
+            $auxTemp->setJa_recebeu_auxilio($auxilio['ja_recebeu_auxilio']);
+            $auxTemp->setQuantidade_de_anos($auxilio['quantidade_de_anos']);
+            $auxTemp->setTipo_auxilio_solicitado($tipo_auxilio_solicitado)
             array_push($auxilios,$auxilio);
         }
 

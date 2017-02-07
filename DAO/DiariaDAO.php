@@ -12,7 +12,8 @@ class DiariaDAO {
         try{
             $AuxiliosDAO = new AuxiliosDAO($this->conexao);
             $AuxiliosDAO->inserir($diaria->getAuxilio());
-            $diaria->setAuxilio($AuxiliosDAO->buscarPorTudo($diaria->getAuxilio()->getJa_recebeu_auxilio(), $diaria->getAuxilio()->getQuantidade_de_anos(), $diaria->getAuxilio()->getTipo_auxilio_solicitado(), $diaria->getAuxilio()->getServidor());
+            Auxilios:: $auxilio = $AuxiliosDAO->buscarPorTudo($diaria->getAuxilio()->getJa_recebeu_auxilio(), $diaria->getAuxilio()->getQuantidade_de_anos(), $diaria->getAuxilio()->getTipo_auxilio_solicitado(), $diaria->getAuxilio()->getServidor());
+            $diaria->setAuxilio($auxilio);
 
             $ViagemDAO = new ViagemDAO($this->conexao);
             $ViagemDAO->inserir($diaria->getViagem());
