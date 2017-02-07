@@ -15,6 +15,7 @@
             <?php
             
             $this->exibir_form_solicitacao_diarias();
+           
         }
         
         public function exibir_config() {
@@ -40,7 +41,7 @@
                 <div class="col-sm-1"></div>
                 
                 <div class="col-sm-10 formulario">
-                    <form class="form-horizontal table" action="controller/logica_solicitacao_diarias.php" method="post">
+                    <form class="form-horizontal table" action="controller/logica_solicitacao_diarias.php" method="post" enctype="multipart/form-data">
                        <div class="panel panel-primary">
                             <div class="panel-heading">Dados da viagem</div>
                             <div class="panel-body">
@@ -168,16 +169,16 @@
                                       <input type="number" required="required" class="form-control" name="pontuacao" placeholder="Digite sua pontuacao">
                                   </div>
                                 </div>
-                                <div class="form-group">        
-                                  <div class="col-sm-offset-2 col-sm-10">
-                                      <a href="#" onclick="window.open('https://drive.google.com/file/d/0Bzmt6ieQg2PMMThaMlRWbUtGYWM/view', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=770, HEIGHT=400');">ANEXAR ARQUIVOS COMPROVANDO PONTUAÇÃO CIENTÍFICA</a>
-                                  </div>
-                                </div>
-
                                 <div class="form-group">
                                   <label class="control-label col-sm-2" for="importancia">Apenas para Cursos/Treinamentos, diga a importância:</label>
                                   <div class="col-sm-10">          
                                       <input type="text" required="required" class="form-control" name="importancia" placeholder="Digite a importância">
+                                  </div>
+                                </div>
+                                <div class="form-group">        
+                                  <div class="col-sm-offset-2 col-sm-10">
+                                      <a href="#" onclick="window.open('https://drive.google.com/file/d/0Bzmt6ieQg2PMMThaMlRWbUtGYWM/view', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=770, HEIGHT=400');">ANEXAR ARQUIVOS COMPROVANDO PONTUAÇÃO CIENTÍFICA</a>
+                                      <input type="file" name="arquivo" />
                                   </div>
                                 </div>
                             </div>
@@ -187,10 +188,10 @@
                               <button type="submit" class="btn btn-lg btn-primary btn-block botao">Cadastrar</button>
                             </div>
                         </div>
-                  </form>
-                    
+                  </form>                    
                 </div>
             </div>
+    
             <?php    
         }
         
@@ -241,6 +242,7 @@
         </div>        
         <?php
     }
+
     function listagemCargo()
     {
         $dao = new DAO();
@@ -249,4 +251,4 @@
         $dao->fecharConexao();
         return $cargos;
     }
-        ?>
+        ?> 
