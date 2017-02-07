@@ -32,9 +32,21 @@ class EventoDAO {
         if($stmt->execute()){
             $resultado = $stmt->get_result();
             $array = $resultado->fetch_assoc();
+            
+            $evento = new Evento();
+            $evento->setId($array[0]['id_evento']);
+            $evento->setNome_Evento($array[0]['nome']);
+            
+            $periodo_evento = new Periodo();
+            $periodo_evento->setInicio($array[0]['data_inicial']);
+            $periodo_evento->setFim($array[0]['data_final']);
+            $evento->setPeriodo_Evento($periodo_evento);
+            
+            $evento->setAbrangencia($array[0]['abrangencia']);
+            
             $stmt->close();
             $con->close();
-            return $array;
+            return $evento;
         }else{
             return false;
         }

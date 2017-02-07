@@ -32,6 +32,10 @@ class ViagemDAO {
         if($stmt->execute()){
             $resultado = $stmt->get_result();
             $array = $resultado->fetch_assoc();
+            
+            $viagem = new Viagem();
+            $viagem->setId($array[0]['id_viagem']);
+            $viagem->setQuantidade_de_dias($array[0]['quantidade_dias']);
             $stmt->close();
             $con->close();
             return $array;

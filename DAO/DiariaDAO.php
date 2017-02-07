@@ -51,4 +51,43 @@ class DiariaDAO {
             return false;
         }
     }
+    
+    public function listarTodos()
+    {
+        try
+        {
+            $con = DAO::getConexao();
+            $query = "select * from diaria";
+            
+            $con = DAO::getConexao();
+            $stmt = $con->prepare($query);
+            
+            if($stmt->execute()){
+                $resultado = $stmt->get_result();
+                $array = $resultado->fetch_all(MYSQLI_ASSOC);
+                $todasAsDiarias = new ArrayObject();
+                foreach ($array as $value) {
+                    $diaria = new Diaria();
+                    $diaria->setId($value['id_diaria']);
+                    $diaria->setViagem($value['id_viagem']);
+                    $diaria->setEvento($value['id_evento']);
+                    $diaria->setTrabalho($value['id_trabalho']);
+                    $diaria->setAuxilio($value['id_historico']);
+                    $diaria->setProducoes($value['id_producao']);
+                    $diaria->setServidor($value['id_usuario']);
+                    
+                    $todasAsDiarias->append($value);
+                }
+                $stmt->close();
+                $con->close();
+                return $todasAsDiarias;
+            }
+            $stmt->close();
+            $con->close();
+            return NULL;
+        } catch (Exception $ex) {
+            echo "Erro no banco de dados!$ex";
+            return NULL;
+        }
+    }
 }

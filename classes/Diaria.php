@@ -59,6 +59,7 @@ class Diaria
     {
         $this->evento = $evento;
     }
+    
     public function getEvento()
     {
         return $this->evento;
