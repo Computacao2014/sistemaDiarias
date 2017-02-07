@@ -3,8 +3,9 @@
  * Description of ClasseDAO
  *
  */
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
 require_once('DAO.php');
-require_once('../class/Viagem.php');
+require_once "$root/classes/Viagem.php";
 
 class ViagemDAO {
 

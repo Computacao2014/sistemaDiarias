@@ -4,7 +4,8 @@
  *
  */
 require_once('DAO.php');
-require_once('../class/Evento.php');
+$root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
+require_once "$root/classes/Evento.php";
 
 class EventoDAO {
 
