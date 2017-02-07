@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 19-Jan-2017 às 21:09
+-- Tempo de geração: 26/01/2017 às 21:30
 -- Versão do servidor: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Versão do PHP: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sistemadiarias`
+-- Banco de dados: `sistemadiarias`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cargo`
+-- Estrutura para tabela `cargo`
 --
 
 CREATE TABLE `cargo` (
@@ -35,7 +35,37 @@ CREATE TABLE `cargo` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `evento`
+-- Estrutura para tabela `conta_bancaria`
+--
+
+CREATE TABLE `conta_bancaria` (
+  `conta` varchar(15) NOT NULL,
+  `agencia` varchar(15) NOT NULL,
+  `banco` varchar(15) NOT NULL,
+  `id_usuario` varchar(15) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `diaria`
+--
+
+CREATE TABLE `diaria` (
+  `id_diaria` bigint(20) NOT NULL,
+  `id_viagem` bigint(20) NOT NULL,
+  `id_evento` bigint(20) NOT NULL,
+  `id_trabalho` bigint(20) NOT NULL,
+  `id_historico` bigint(20) NOT NULL,
+  `id_producao` bigint(20) NOT NULL,
+  `id_perfil_diaria` bigint(20) NOT NULL,
+  `id_usuario` varchar(15) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `evento`
 --
 
 CREATE TABLE `evento` (
@@ -49,7 +79,7 @@ CREATE TABLE `evento` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `historico_auxilio`
+-- Estrutura para tabela `historico_auxilio`
 --
 
 CREATE TABLE `historico_auxilio` (
@@ -63,7 +93,7 @@ CREATE TABLE `historico_auxilio` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perfil_diaria`
+-- Estrutura para tabela `perfil_diaria`
 --
 
 CREATE TABLE `perfil_diaria` (
@@ -80,7 +110,7 @@ CREATE TABLE `perfil_diaria` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `producoes_academicas`
+-- Estrutura para tabela `producoes_academicas`
 --
 
 CREATE TABLE `producoes_academicas` (
@@ -88,13 +118,13 @@ CREATE TABLE `producoes_academicas` (
   `pontuacao` int(11) NOT NULL,
   `importancia` varchar(500) NOT NULL,
   `arquivo` blob NOT NULL,
-  `matricula_usuario` varchar(15) NOT NULL
+  `matricula_usuario` varchar(15) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `servidor`
+-- Estrutura para tabela `servidor`
 --
 
 CREATE TABLE `servidor` (
@@ -109,7 +139,7 @@ CREATE TABLE `servidor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `servidor`
+-- Fazendo dump de dados para tabela `servidor`
 --
 
 INSERT INTO `servidor` (`matricula`, `cpf`, `email`, `nome`, `senha`, `id_cargo`, `id_titulacao`, `admin`) VALUES
@@ -119,7 +149,7 @@ INSERT INTO `servidor` (`matricula`, `cpf`, `email`, `nome`, `senha`, `id_cargo`
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `titulacao`
+-- Estrutura para tabela `titulacao`
 --
 
 CREATE TABLE `titulacao` (
@@ -128,7 +158,7 @@ CREATE TABLE `titulacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `titulacao`
+-- Fazendo dump de dados para tabela `titulacao`
 --
 
 INSERT INTO `titulacao` (`id_titulacao`, `nome`) VALUES
@@ -139,7 +169,7 @@ INSERT INTO `titulacao` (`id_titulacao`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `trabalho`
+-- Estrutura para tabela `trabalho`
 --
 
 CREATE TABLE `trabalho` (
@@ -152,7 +182,7 @@ CREATE TABLE `trabalho` (
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `viagem`
+-- Estrutura para tabela `viagem`
 --
 
 CREATE TABLE `viagem` (
@@ -163,30 +193,63 @@ CREATE TABLE `viagem` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Indexes for dumped tables
+-- Índices de tabelas apagadas
 --
 
 --
--- Indexes for table `cargo`
+-- Índices de tabela `cargo`
 --
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_perfil_diaria` (`id_perfil_diaria`);
 
 --
--- Indexes for table `perfil_diaria`
+-- Índices de tabela `conta_bancaria`
+--
+ALTER TABLE `conta_bancaria`
+  ADD PRIMARY KEY (`conta`),
+  ADD KEY `id_usuario` (`id_usuario`);
+
+--
+-- Índices de tabela `diaria`
+--
+ALTER TABLE `diaria`
+  ADD PRIMARY KEY (`id_diaria`),
+  ADD KEY `id_viagem` (`id_viagem`),
+  ADD KEY `id_evento` (`id_evento`),
+  ADD KEY `id_trabalho` (`id_trabalho`),
+  ADD KEY `id_historico` (`id_historico`),
+  ADD KEY `id_producao` (`id_producao`),
+  ADD KEY `id_usuario` (`id_usuario`),
+  ADD KEY `id_perfil_diaria` (`id_perfil_diaria`);
+
+--
+-- Índices de tabela `evento`
+--
+ALTER TABLE `evento`
+  ADD PRIMARY KEY (`id_evento`);
+
+--
+-- Índices de tabela `historico_auxilio`
+--
+ALTER TABLE `historico_auxilio`
+  ADD PRIMARY KEY (`id_historico`);
+
+--
+-- Índices de tabela `perfil_diaria`
 --
 ALTER TABLE `perfil_diaria`
   ADD PRIMARY KEY (`id_perfil_diaria`);
 
 --
--- Indexes for table `producoes_academicas`
+-- Índices de tabela `producoes_academicas`
 --
 ALTER TABLE `producoes_academicas`
-  ADD PRIMARY KEY (`id_producao`);
+  ADD PRIMARY KEY (`id_producao`),
+  ADD KEY `matricula_usuario` (`matricula_usuario`);
 
 --
--- Indexes for table `servidor`
+-- Índices de tabela `servidor`
 --
 ALTER TABLE `servidor`
   ADD PRIMARY KEY (`matricula`),
@@ -197,66 +260,90 @@ ALTER TABLE `servidor`
   ADD KEY `id_cargo` (`id_cargo`);
 
 --
--- Indexes for table `titulacao`
+-- Índices de tabela `titulacao`
 --
 ALTER TABLE `titulacao`
   ADD PRIMARY KEY (`id_titulacao`);
 
 --
--- Indexes for table `trabalho`
+-- Índices de tabela `trabalho`
 --
 ALTER TABLE `trabalho`
   ADD PRIMARY KEY (`id_trabalho`),
   ADD UNIQUE KEY `matricula_usuario` (`matricula_usuario`);
 
 --
--- Indexes for table `viagem`
+-- Índices de tabela `viagem`
 --
 ALTER TABLE `viagem`
   ADD PRIMARY KEY (`id_viagem`),
   ADD KEY `id_viagem` (`id_viagem`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT for table `cargo`
+-- AUTO_INCREMENT de tabela `cargo`
 --
 ALTER TABLE `cargo`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `perfil_diaria`
+-- AUTO_INCREMENT de tabela `perfil_diaria`
 --
 ALTER TABLE `perfil_diaria`
-  MODIFY `id_perfil_diaria` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_perfil_diaria` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `titulacao`
+-- AUTO_INCREMENT de tabela `titulacao`
 --
 ALTER TABLE `titulacao`
-  MODIFY `id_titulacao` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_titulacao` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `trabalho`
+-- AUTO_INCREMENT de tabela `trabalho`
 --
 ALTER TABLE `trabalho`
-  MODIFY `id_trabalho` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_trabalho` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `viagem`
+-- AUTO_INCREMENT de tabela `viagem`
 --
 ALTER TABLE `viagem`
-  MODIFY `id_viagem` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id_viagem` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- Constraints for dumped tables
+-- Restrições para dumps de tabelas
 --
 
 --
--- Limitadores para a tabela `cargo`
+-- Restrições para tabelas `cargo`
 --
 ALTER TABLE `cargo`
   ADD CONSTRAINT `cargo_ibfk_1` FOREIGN KEY (`id_perfil_diaria`) REFERENCES `perfil_diaria` (`id_perfil_diaria`);
 
 --
--- Limitadores para a tabela `servidor`
+-- Restrições para tabelas `conta_bancaria`
+--
+ALTER TABLE `conta_bancaria`
+  ADD CONSTRAINT `conta_bancaria_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `servidor` (`matricula`);
+
+--
+-- Restrições para tabelas `diaria`
+--
+ALTER TABLE `diaria`
+  ADD CONSTRAINT `diaria_ibfk_1` FOREIGN KEY (`id_viagem`) REFERENCES `viagem` (`id_viagem`),
+  ADD CONSTRAINT `diaria_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id_evento`),
+  ADD CONSTRAINT `diaria_ibfk_3` FOREIGN KEY (`id_trabalho`) REFERENCES `trabalho` (`id_trabalho`),
+  ADD CONSTRAINT `diaria_ibfk_4` FOREIGN KEY (`id_historico`) REFERENCES `historico_auxilio` (`id_historico`),
+  ADD CONSTRAINT `diaria_ibfk_5` FOREIGN KEY (`id_producao`) REFERENCES `producoes_academicas` (`id_producao`),
+  ADD CONSTRAINT `diaria_ibfk_6` FOREIGN KEY (`id_usuario`) REFERENCES `servidor` (`matricula`),
+  ADD CONSTRAINT `diaria_ibfk_7` FOREIGN KEY (`id_perfil_diaria`) REFERENCES `perfil_diaria` (`id_perfil_diaria`);
+
+--
+-- Restrições para tabelas `producoes_academicas`
+--
+ALTER TABLE `producoes_academicas`
+  ADD CONSTRAINT `producoes_academicas_ibfk_1` FOREIGN KEY (`matricula_usuario`) REFERENCES `servidor` (`matricula`);
+
+--
+-- Restrições para tabelas `servidor`
 --
 ALTER TABLE `servidor`
   ADD CONSTRAINT `servidor_ibfk_2` FOREIGN KEY (`id_titulacao`) REFERENCES `titulacao` (`id_titulacao`);

@@ -25,7 +25,7 @@ class DiariaDAO {
             
             $ProducoesDAO = new ProducoesDAO($this->conexao);
             $ProducoesDAO->inserir($diaria->getProducoes());
-            $diaria->setProducoes($ProducoesDAO->buscarPor???($diaria->get()));
+            //$diaria->setProducoes($ProducoesDAO->buscarPor???($diaria->get()));
             
             $EventoDAO = new EventoDAO($this->conexao);
             $EventoDAO->inserir($diaria->getEvento());
