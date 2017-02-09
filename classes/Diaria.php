@@ -1,12 +1,4 @@
 <?php
-    require_once("Servidor.php");
-    require_once("Relatorio.php");
-    require_once("Viagem.php");
-    require_once("Evento.php");
-    require_once("Trabalho.php");
-    require_once("Auxilios.php");
-    require_once("Producoes.php");
-    require_once("Servidor.php");
 /**
  * Description of Diaria
  *
@@ -15,22 +7,14 @@
 class Diaria
 {
     private $id;
-    private $servidor;
+    private $id_usuario;
     private $viagem;
     private $evento;
     private $trabalho;
-    private $auxilio;
+    private $historico_auxilio;
     private $producoes;
+    private $perfilDiaria;
     
-    public function Diaria(){
-        $this->viagem = new Viagem();
-        $this->evento = new Evento();
-        $this->trabalho = new Trabalho();
-        $this->auxilio = new Auxilios();
-        $this->producoes = new Producoes();
-        $this->servidor = new Servidor();
-    }
-
     public function setId($id)
     {
         $this->id = $id;
@@ -39,52 +23,62 @@ class Diaria
     {
         return $this->id;
     }
-    public function setServidor($servidor)
+    
+    public function setIdPerfilDiaria($idPerfil)
     {
-        $this->servidor = $servidor;
+        $this->perfilDiaria = $idPerfil;
     }
-    public function getServidor()
+    public function getIdPerfilDiaria()
     {
-        return $this->servidor;
+        return $this->perfilDiaria;
     }
-    public function setViagem($viagem)
+    
+    public function setIDServidor($idServidor)
+    {
+        $this->id_usuario = $idServidor;
+    }
+    public function getIdServidor()
+    {
+        return $this->id_usuario;
+    }
+    public function setIdViagem($viagem)
     {
         $this->viagem = $viagem;
     }
-    public function getViagem()
+    public function getIdViagem()
     {
         return $this->viagem;
     }
-    public function setEvento($evento)
+    public function setIdEvento($evento)
     {
         $this->evento = $evento;
     }
     
-    public function getEvento()
+    public function getIdEvento()
     {
         return $this->evento;
     }
-    public function setTrabalho($trabalho)
+    public function setIdTrabalho($trabalho)
     {
         $this->trabalho = $trabalho;
     }
-    public function getTrabalho()
+    public function getIdTrabalho()
     {
         return $this->trabalho;
     }
-    public function setAuxilio(Auxilios $auxilio)
+    public function setIdAuxilio($auxilio)
     {
-        $this->auxilio = $auxilio;
+        $this->historico_auxilio = $auxilio;
     }
-    public function getAuxilio()
+    public function getIdAuxilio()
     {
-        return $this->auxilio;
+        return $this->historico_auxilio;
     }
-    public function setProducoes($producoes)
+    public function setIdProducoes($producoes)
     {
         $this->producoes = $producoes;
     }
-    public function getProducoes()
+    public function getIdProducoes()
     {
         return $this->producoes;
     }
