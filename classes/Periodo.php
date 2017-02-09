@@ -11,11 +11,6 @@ class Periodo
     private $inicio;
     private $fim;
     
-    public function __construct($inicio,$fim) 
-    {
-        $this->inicio = $inicio;
-        $this->fim = $fim;
-    }
     
     public function getId()
     {

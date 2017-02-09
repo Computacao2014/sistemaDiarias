@@ -22,6 +22,7 @@ class ViagemDAO {
             return false;
         }
     }
+    
     function buscarPorId($id)
     {
         $query = "select * from viagem where id_viagem=?";
@@ -34,11 +35,11 @@ class ViagemDAO {
             $array = $resultado->fetch_assoc();
             
             $viagem = new Viagem();
-            $viagem->setId($array[0]['id_viagem']);
-            $viagem->setQuantidade_de_dias($array[0]['quantidade_dias']);
+            $viagem->setId($array['id_viagem']);
+            $viagem->setQuantidade_de_dias($array['quantidade_dias']);
             $stmt->close();
             $con->close();
-            return $array;
+            return $viagem;
         }else{
             return false;
         }

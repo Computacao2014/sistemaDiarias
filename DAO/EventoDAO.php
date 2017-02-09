@@ -6,6 +6,7 @@
 require_once('DAO.php');
 $root = $_SERVER['DOCUMENT_ROOT'].'/sistemaDiarias';
 require_once "$root/classes/Evento.php";
+require_once "$root/classes/Periodo.php";
 
 class EventoDAO {
 
@@ -34,15 +35,15 @@ class EventoDAO {
             $array = $resultado->fetch_assoc();
             
             $evento = new Evento();
-            $evento->setId($array[0]['id_evento']);
-            $evento->setNome_Evento($array[0]['nome']);
+            $evento->setId($array['id_evento']);
+            $evento->setNome_Evento($array['nome']);
             
             $periodo_evento = new Periodo();
-            $periodo_evento->setInicio($array[0]['data_inicial']);
-            $periodo_evento->setFim($array[0]['data_final']);
+            $periodo_evento->setInicio($array['data_inicial']);
+            $periodo_evento->setFim($array['data_final']);
             $evento->setPeriodo_Evento($periodo_evento);
             
-            $evento->setAbrangencia($array[0]['abrangencia']);
+            $evento->setAbrangencia($array['abrangencia']);
             
             $stmt->close();
             $con->close();

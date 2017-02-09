@@ -39,19 +39,28 @@ class PaginaPrincipal extends Pagina
             {
                 foreach ($dados as $dado)
                 {
+                    $objeto = new Diaria();
+                    $objeto->setId($dado['id_diaria']);
+                    $objeto->setViagem($dado['id_viagem']);
+                    $objeto->setEvento($dado['id_evento']);
+                    $objeto->setTrabalho($dado['id_trabalho']);
+                    $objeto->setAuxilio($dado['id_historico']);
+                    $objeto->setProducoes($dado['id_producao']);
+                    $objeto->setServidor($dado['id_usuario']);
+                    
                     $eventoDAO = new EventoDAO();
-                    $evento = $eventoDAO->buscarPorId($dado->getEvento());
-                    $dado->setEvento($evento);
+                    $evento = $eventoDAO->buscarPorId($objeto->getEvento());
+                    $objeto->setEvento($evento);
                     
                     $viagemDao = new ViagemDAO();
-                    $viagem = $viagemDao->buscarPorId($dado->getViagem());
-                    $dado->setViagem($viagem);
+                    $viagem = $viagemDao->buscarPorId($objeto->getViagem());
+                    $objeto->setViagem($viagem);
                     ?>
                     <tr>
-                        <td id = "nomeEvento"></td>
-                        <td id = "quantidade"></td>
-                        <td id = "dataInicio"></td>
-                        <td id = "dataFim"></td>
+                        <td id = "nomeEvento"><?=$objeto->getEvento()->getNome_Evento()?></td>
+                        <td id = "quantidade"><?=$objeto->getViagem()->getQuantidade_de_dias()?></td>
+                        <td id = "dataInicio"><?=$objeto->getEvento()->getPeriodo_Evento()->getInicio()?></td>
+                        <td id = "dataFim"><?=$objeto->getEvento()->getPeriodo_Evento()->getFim()?></td>
                         <td>
                             <form action="controller/remover_servidor.php?id=<?=$servidor->matricula?>" method="post">
                                 <input type="hidden" name="matricula" value="<?=$servidor->matricula?>" />

@@ -7,27 +7,48 @@ class BuscarPerfilDiaria extends Pagina{
     public function exibir_body() {
         parent::exibir_body();
         ?>
-<div class="container">
     
-    
-    <form class="formulario" id="formPerquisarClasse">
-            <div class="row">
-                <h2>Buscar Perfis</h2>
-                <div class="col-sm-12">
-                    <label>Procurar classe</label>
-                    <input type="text" class="form-control" id="nome_classe">
+    <h3 class = titulo>Buscar Perfis</h3>
+    <div class="container">
+                
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10 formulario">
+            <form id="formPerquisarClasse">
+                <table class="table">
+                    <tr>
+                        <th>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <label>Procurar classe</label>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <br>
+                            <div>
+                                <input type="text" class="form-control" id="nome_classe">
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div>
+                                <input type="button" value="Buscar Classes" class="btn btn-lg btn-primary btn-block botaoBusca" id="botao_pesquisar_classe">
+                            </div>
+                        </th>
+                    </tr>
+                </table>
                 </div>
-                <br>
-                <div>
-                    <input type="button" value="Buscar Classes" class="btn btn-success btn-block" id="botao_pesquisar_classe">
-                </div>
-            </div>
-        </form>
-        
-    
+            </form>
+        </div>
+    </div>
+    <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h1 class="text-center">Listar os perfis de diárias</h1>
+            <h3 class="titulo">Listar os perfis de diárias</h3>
             <table class="table tabela table-striped table-bordered" id="tabelaPerfilDiaria">
                 <thead>
                     <tr>
@@ -56,7 +77,7 @@ class BuscarPerfilDiaria extends Pagina{
                         echo "<td><input readonly class='form-control valor_b' value='{$perfil['valor_regiao_b']}'></td>";
                         echo "<td><input readonly class='form-control valor_c' value='{$perfil['valor_regiao_c']}'></td>";
                         echo "<td><input readonly class='form-control valor_d' value='{$perfil['valor_regiao_d']}'></td>";
-                        echo "<td><input readonly value='Editar' type='button' class='btn btn-default botao_editar'></td>";
+                        echo "<td><input readonly value='Editar' type='button' class='btn btn-warning'></td>";
                         echo "<td><input value='Apagar' type='button' class='btn btn-danger botao_apagar'></td>";
                         echo "</tr>";
                     }
